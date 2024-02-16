@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA846E2B801D240052ACFD /* SuStashApp.swift */; };
-		B6DA84712B801D240052ACFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84702B801D240052ACFD /* ContentView.swift */; };
-		B6DA84732B801D240052ACFD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84722B801D240052ACFD /* Item.swift */; };
 		B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84742B801D280052ACFD /* Assets.xcassets */; };
 		B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84782B801D280052ACFD /* Preview Assets.xcassets */; };
 		B6DA84842B801D290052ACFD /* SuStashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84832B801D290052ACFD /* SuStashTests.swift */; };
@@ -44,8 +42,6 @@
 /* Begin PBXFileReference section */
 		B6DA846B2B801D240052ACFD /* SuStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846E2B801D240052ACFD /* SuStashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashApp.swift; sourceTree = "<group>"; };
-		B6DA84702B801D240052ACFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B6DA84722B801D240052ACFD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B6DA84742B801D280052ACFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6DA84762B801D280052ACFD /* SuStash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuStash.entitlements; sourceTree = "<group>"; };
 		B6DA84782B801D280052ACFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -117,8 +113,6 @@
 				B6DA84A22B8022F20052ACFD /* Models */,
 				B6DA849C2B8021580052ACFD /* Views */,
 				B6DA846E2B801D240052ACFD /* SuStashApp.swift */,
-				B6DA84702B801D240052ACFD /* ContentView.swift */,
-				B6DA84722B801D240052ACFD /* Item.swift */,
 				B6DA84742B801D280052ACFD /* Assets.xcassets */,
 				B6DA84762B801D280052ACFD /* SuStash.entitlements */,
 				B6DA847A2B801D280052ACFD /* Info.plist */,
@@ -365,8 +359,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6DA84712B801D240052ACFD /* ContentView.swift in Sources */,
-				B6DA84732B801D240052ACFD /* Item.swift in Sources */,
 				B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */,
 				B6DA84B12B8024CF0052ACFD /* LoginView.swift in Sources */,
 				B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */,
