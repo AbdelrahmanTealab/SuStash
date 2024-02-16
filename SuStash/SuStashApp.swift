@@ -25,7 +25,7 @@ struct SuStashApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBarView()
         }
         .modelContainer(sharedModelContainer)
     }
