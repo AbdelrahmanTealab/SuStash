@@ -1,0 +1,630 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA846E2B801D240052ACFD /* SuStashApp.swift */; };
+		B6DA84712B801D240052ACFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84702B801D240052ACFD /* ContentView.swift */; };
+		B6DA84732B801D240052ACFD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84722B801D240052ACFD /* Item.swift */; };
+		B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84742B801D280052ACFD /* Assets.xcassets */; };
+		B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84782B801D280052ACFD /* Preview Assets.xcassets */; };
+		B6DA84842B801D290052ACFD /* SuStashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84832B801D290052ACFD /* SuStashTests.swift */; };
+		B6DA848E2B801D290052ACFD /* SuStashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA848D2B801D290052ACFD /* SuStashUITests.swift */; };
+		B6DA84902B801D290052ACFD /* SuStashUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA848F2B801D290052ACFD /* SuStashUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B6DA84802B801D280052ACFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6DA846A2B801D240052ACFD;
+			remoteInfo = SuStash;
+		};
+		B6DA848A2B801D290052ACFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6DA846A2B801D240052ACFD;
+			remoteInfo = SuStash;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B6DA846B2B801D240052ACFD /* SuStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DA846E2B801D240052ACFD /* SuStashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashApp.swift; sourceTree = "<group>"; };
+		B6DA84702B801D240052ACFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B6DA84722B801D240052ACFD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		B6DA84742B801D280052ACFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B6DA84762B801D280052ACFD /* SuStash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuStash.entitlements; sourceTree = "<group>"; };
+		B6DA84782B801D280052ACFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B6DA847A2B801D280052ACFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6DA847F2B801D280052ACFD /* SuStashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuStashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DA84832B801D290052ACFD /* SuStashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashTests.swift; sourceTree = "<group>"; };
+		B6DA84892B801D290052ACFD /* SuStashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuStashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6DA848D2B801D290052ACFD /* SuStashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashUITests.swift; sourceTree = "<group>"; };
+		B6DA848F2B801D290052ACFD /* SuStashUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6DA84682B801D240052ACFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA847C2B801D280052ACFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA84862B801D290052ACFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6DA84622B801D240052ACFD = {
+			isa = PBXGroup;
+			children = (
+				B6DA846D2B801D240052ACFD /* SuStash */,
+				B6DA84822B801D290052ACFD /* SuStashTests */,
+				B6DA848C2B801D290052ACFD /* SuStashUITests */,
+				B6DA846C2B801D240052ACFD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6DA846C2B801D240052ACFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA846B2B801D240052ACFD /* SuStash.app */,
+				B6DA847F2B801D280052ACFD /* SuStashTests.xctest */,
+				B6DA84892B801D290052ACFD /* SuStashUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6DA846D2B801D240052ACFD /* SuStash */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA846E2B801D240052ACFD /* SuStashApp.swift */,
+				B6DA84702B801D240052ACFD /* ContentView.swift */,
+				B6DA84722B801D240052ACFD /* Item.swift */,
+				B6DA84742B801D280052ACFD /* Assets.xcassets */,
+				B6DA84762B801D280052ACFD /* SuStash.entitlements */,
+				B6DA847A2B801D280052ACFD /* Info.plist */,
+				B6DA84772B801D280052ACFD /* Preview Content */,
+			);
+			path = SuStash;
+			sourceTree = "<group>";
+		};
+		B6DA84772B801D280052ACFD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA84782B801D280052ACFD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B6DA84822B801D290052ACFD /* SuStashTests */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA84832B801D290052ACFD /* SuStashTests.swift */,
+			);
+			path = SuStashTests;
+			sourceTree = "<group>";
+		};
+		B6DA848C2B801D290052ACFD /* SuStashUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA848D2B801D290052ACFD /* SuStashUITests.swift */,
+				B6DA848F2B801D290052ACFD /* SuStashUITestsLaunchTests.swift */,
+			);
+			path = SuStashUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6DA846A2B801D240052ACFD /* SuStash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6DA84932B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStash" */;
+			buildPhases = (
+				B6DA84672B801D240052ACFD /* Sources */,
+				B6DA84682B801D240052ACFD /* Frameworks */,
+				B6DA84692B801D240052ACFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SuStash;
+			productName = SuStash;
+			productReference = B6DA846B2B801D240052ACFD /* SuStash.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B6DA847E2B801D280052ACFD /* SuStashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6DA84962B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashTests" */;
+			buildPhases = (
+				B6DA847B2B801D280052ACFD /* Sources */,
+				B6DA847C2B801D280052ACFD /* Frameworks */,
+				B6DA847D2B801D280052ACFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6DA84812B801D280052ACFD /* PBXTargetDependency */,
+			);
+			name = SuStashTests;
+			productName = SuStashTests;
+			productReference = B6DA847F2B801D280052ACFD /* SuStashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B6DA84882B801D290052ACFD /* SuStashUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6DA84992B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashUITests" */;
+			buildPhases = (
+				B6DA84852B801D290052ACFD /* Sources */,
+				B6DA84862B801D290052ACFD /* Frameworks */,
+				B6DA84872B801D290052ACFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6DA848B2B801D290052ACFD /* PBXTargetDependency */,
+			);
+			name = SuStashUITests;
+			productName = SuStashUITests;
+			productReference = B6DA84892B801D290052ACFD /* SuStashUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6DA84632B801D240052ACFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					B6DA846A2B801D240052ACFD = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					B6DA847E2B801D280052ACFD = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B6DA846A2B801D240052ACFD;
+					};
+					B6DA84882B801D290052ACFD = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = B6DA846A2B801D240052ACFD;
+					};
+				};
+			};
+			buildConfigurationList = B6DA84662B801D240052ACFD /* Build configuration list for PBXProject "SuStash" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B6DA84622B801D240052ACFD;
+			productRefGroup = B6DA846C2B801D240052ACFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6DA846A2B801D240052ACFD /* SuStash */,
+				B6DA847E2B801D280052ACFD /* SuStashTests */,
+				B6DA84882B801D290052ACFD /* SuStashUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6DA84692B801D240052ACFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */,
+				B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA847D2B801D280052ACFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA84872B801D290052ACFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6DA84672B801D240052ACFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6DA84712B801D240052ACFD /* ContentView.swift in Sources */,
+				B6DA84732B801D240052ACFD /* Item.swift in Sources */,
+				B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA847B2B801D280052ACFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6DA84842B801D290052ACFD /* SuStashTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6DA84852B801D290052ACFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6DA84902B801D290052ACFD /* SuStashUITestsLaunchTests.swift in Sources */,
+				B6DA848E2B801D290052ACFD /* SuStashUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B6DA84812B801D280052ACFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6DA846A2B801D240052ACFD /* SuStash */;
+			targetProxy = B6DA84802B801D280052ACFD /* PBXContainerItemProxy */;
+		};
+		B6DA848B2B801D290052ACFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6DA846A2B801D240052ACFD /* SuStash */;
+			targetProxy = B6DA848A2B801D290052ACFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B6DA84912B801D290052ACFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B6DA84922B801D290052ACFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		B6DA84942B801D290052ACFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStash/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStash;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6DA84952B801D290052ACFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStash/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStash;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B6DA84972B801D290052ACFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuStash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SuStash";
+			};
+			name = Debug;
+		};
+		B6DA84982B801D290052ACFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuStash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SuStash";
+			};
+			name = Release;
+		};
+		B6DA849A2B801D290052ACFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuStash;
+			};
+			name = Debug;
+		};
+		B6DA849B2B801D290052ACFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77MX867GR8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SuStash;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6DA84662B801D240052ACFD /* Build configuration list for PBXProject "SuStash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6DA84912B801D290052ACFD /* Debug */,
+				B6DA84922B801D290052ACFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6DA84932B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6DA84942B801D290052ACFD /* Debug */,
+				B6DA84952B801D290052ACFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6DA84962B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6DA84972B801D290052ACFD /* Debug */,
+				B6DA84982B801D290052ACFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6DA84992B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6DA849A2B801D290052ACFD /* Debug */,
+				B6DA849B2B801D290052ACFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6DA84632B801D240052ACFD /* Project object */;
+}
