@@ -18,8 +18,8 @@
 		B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AA2B80247E0052ACFD /* CollectionsView.swift */; };
 		B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AC2B8024970052ACFD /* RecommendsView.swift */; };
 		B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AE2B8024A60052ACFD /* HomeView.swift */; };
-		B6DA84B12B8024CF0052ACFD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B02B8024CF0052ACFD /* LoginView.swift */; };
-		B6DA84B32B8024EA0052ACFD /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B22B8024EA0052ACFD /* RegistrationView.swift */; };
+		B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */; };
+		B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +56,8 @@
 		B6DA84AA2B80247E0052ACFD /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		B6DA84AC2B8024970052ACFD /* RecommendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendsView.swift; sourceTree = "<group>"; };
 		B6DA84AE2B8024A60052ACFD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B6DA84B02B8024CF0052ACFD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		B6DA84B22B8024EA0052ACFD /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,7 @@
 		B6DA849D2B8021660052ACFD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				B6DA84B02B8024CF0052ACFD /* LoginView.swift */,
-				B6DA84B22B8024EA0052ACFD /* RegistrationView.swift */,
+				B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 		B6DA84A32B8022F60052ACFD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -360,13 +360,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */,
-				B6DA84B12B8024CF0052ACFD /* LoginView.swift in Sources */,
+				B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */,
 				B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */,
 				B6DA84A92B8024480052ACFD /* ProfileView.swift in Sources */,
+				B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */,
 				B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */,
 				B6DA84A72B80241A0052ACFD /* TabBarView.swift in Sources */,
 				B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */,
-				B6DA84B32B8024EA0052ACFD /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
