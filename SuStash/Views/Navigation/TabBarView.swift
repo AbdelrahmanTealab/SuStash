@@ -24,11 +24,6 @@ struct TabBarView: View {
                 .tabItem {
                     Label("Collections", systemImage: "tray.full.fill")
                 }
-
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.fill")
-                }
         }
     }
 }

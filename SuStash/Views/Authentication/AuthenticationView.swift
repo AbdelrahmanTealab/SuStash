@@ -18,11 +18,30 @@ struct AuthenticationView: View {
                 TabBarView()
             } else {
                 // User is not authenticated; show a message or a button to open Settings.
-                Text("Please log in to your iCloud account in Settings.")
+                Image("sustashlogo") // Replace with your logo
+                    .resizable()
+                    .scaledToFit()
+                HStack(alignment:.firstTextBaseline) {
+                    Image(systemName: "exclamationmark.circle")
+                        .resizable()
+                        .frame(width:20,height: 20  )
+                        .foregroundStyle(.red)
+                        
+                    Text(viewModel.errorMessage)
+                        .font(.custom("Avenir Next", size: 20))
+                        .foregroundStyle(.red)
+                        .multilineTextAlignment(.center)
+                }
+                
             }
         }
         .onAppear {
             viewModel.checkAuthentication()
         }
+    }
+}
+struct AuthenticationView_Previews: PreviewProvider {
+    static var previews: some View {
+        AuthenticationView()
     }
 }
