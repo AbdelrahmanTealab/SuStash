@@ -20,6 +20,7 @@
 		B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AE2B8024A60052ACFD /* HomeView.swift */; };
 		B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */; };
 		B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */; };
+		B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,9 @@
 		B6DA84AE2B8024A60052ACFD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		B6DA84BA2B81B0FD0052ACFD /* Avenir Next Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next Condensed.ttc"; sourceTree = "<group>"; };
+		B6DA84BB2B81B0FD0052ACFD /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +117,11 @@
 				B6DA84A22B8022F20052ACFD /* Models */,
 				B6DA849C2B8021580052ACFD /* Views */,
 				B6DA846E2B801D240052ACFD /* SuStashApp.swift */,
+				B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */,
 				B6DA84742B801D280052ACFD /* Assets.xcassets */,
 				B6DA84762B801D280052ACFD /* SuStash.entitlements */,
 				B6DA847A2B801D280052ACFD /* Info.plist */,
+				B6DA84BC2B81B1240052ACFD /* Fonts */,
 				B6DA84772B801D280052ACFD /* Preview Content */,
 			);
 			path = SuStash;
@@ -227,6 +233,15 @@
 				B6DA84A62B80241A0052ACFD /* TabBarView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B6DA84BC2B81B1240052ACFD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA84BA2B81B0FD0052ACFD /* Avenir Next Condensed.ttc */,
+				B6DA84BB2B81B0FD0052ACFD /* Avenir Next.ttc */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +382,7 @@
 				B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */,
 				B6DA84A72B80241A0052ACFD /* TabBarView.swift in Sources */,
 				B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */,
+				B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

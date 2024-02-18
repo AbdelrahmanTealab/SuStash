@@ -13,7 +13,7 @@ struct SuStashApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AuthenticationView()
+            SplashScreenView()
         }
     }
 }
