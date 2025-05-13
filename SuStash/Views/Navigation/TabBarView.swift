@@ -14,16 +14,15 @@ struct TabBarView: View {
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-
+            CollectionsView()
+                .tabItem {
+                    Label("Collections", systemImage: "tray.full.fill")
+                }
             RecommendsView()
                 .tabItem {
                     Label("Recommends", systemImage: "star.fill")
                 }
 
-            CollectionsView()
-                .tabItem {
-                    Label("Collections", systemImage: "tray.full.fill")
-                }
         }
     }
 }

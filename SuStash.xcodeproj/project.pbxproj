@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6088CB52DD40D1700BB74EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */; };
+		B655FCEF2B82D2B500983B5D /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCEE2B82D2B500983B5D /* SavedItem.swift */; };
+		B655FCF32B82D53D00983B5D /* SavedItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */; };
+		B655FCF52B82D7C200983B5D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF42B82D7C200983B5D /* HomeViewModel.swift */; };
+		B655FCF72B82F27E00983B5D /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */; };
 		B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA846E2B801D240052ACFD /* SuStashApp.swift */; };
 		B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84742B801D280052ACFD /* Assets.xcassets */; };
 		B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84782B801D280052ACFD /* Preview Assets.xcassets */; };
@@ -40,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B655FCEE2B82D2B500983B5D /* SavedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItem.swift; sourceTree = "<group>"; };
+		B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemCellView.swift; sourceTree = "<group>"; };
+		B655FCF42B82D7C200983B5D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewView.swift; sourceTree = "<group>"; };
 		B6DA846B2B801D240052ACFD /* SuStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846E2B801D240052ACFD /* SuStashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashApp.swift; sourceTree = "<group>"; };
 		B6DA84742B801D280052ACFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +97,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B4C59BD248E17D60FB07D5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B6DA84622B801D240052ACFD = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +111,7 @@
 				B6DA84822B801D290052ACFD /* SuStashTests */,
 				B6DA848C2B801D290052ACFD /* SuStashUITests */,
 				B6DA846C2B801D240052ACFD /* Products */,
+				0B4C59BD248E17D60FB07D5B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +137,7 @@
 				B6DA84742B801D280052ACFD /* Assets.xcassets */,
 				B6DA84762B801D280052ACFD /* SuStash.entitlements */,
 				B6DA847A2B801D280052ACFD /* Info.plist */,
+				B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */,
 				B6DA84BC2B81B1240052ACFD /* Fonts */,
 				B6DA84772B801D280052ACFD /* Preview Content */,
 			);
@@ -174,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				B6DA84AE2B8024A60052ACFD /* HomeView.swift */,
+				B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */,
+				B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -197,6 +218,7 @@
 		B6DA84A22B8022F20052ACFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B655FCEE2B82D2B500983B5D /* SavedItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */,
+				B655FCF42B82D7C200983B5D /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -257,6 +280,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6DA84962B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashTests" */;
 			buildPhases = (
+				E869E62363BCE4E3C91DCFF6 /* [CP] Check Pods Manifest.lock */,
 				B6DA847B2B801D280052ACFD /* Sources */,
 				B6DA847C2B801D280052ACFD /* Frameworks */,
 				B6DA847D2B801D280052ACFD /* Resources */,
@@ -275,9 +299,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6DA84992B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashUITests" */;
 			buildPhases = (
+				CFFA78F5C301E8F81A09B5F6 /* [CP] Check Pods Manifest.lock */,
 				B6DA84852B801D290052ACFD /* Sources */,
 				B6DA84862B801D290052ACFD /* Frameworks */,
 				B6DA84872B801D290052ACFD /* Resources */,
+				F1858639A6FA7FEC93E8544C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -297,7 +323,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					B6DA846A2B801D240052ACFD = {
 						CreatedOnToolsVersion = 15.2;
@@ -339,6 +365,7 @@
 			files = (
 				B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */,
 				B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */,
+				B6088CB52DD40D1700BB74EF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,19 +385,91 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CFFA78F5C301E8F81A09B5F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuStash-SuStashUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E869E62363BCE4E3C91DCFF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuStashTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1858639A6FA7FEC93E8544C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B6DA84672B801D240052ACFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */,
+				B655FCF52B82D7C200983B5D /* HomeViewModel.swift in Sources */,
 				B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */,
+				B655FCF72B82F27E00983B5D /* LinkPreviewView.swift in Sources */,
 				B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */,
 				B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */,
 				B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */,
 				B6DA84A72B80241A0052ACFD /* TabBarView.swift in Sources */,
 				B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */,
 				B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */,
+				B655FCEF2B82D2B500983B5D /* SavedItem.swift in Sources */,
+				B655FCF32B82D53D00983B5D /* SavedItemCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +540,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -502,7 +603,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -530,22 +633,24 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
-				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStash/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -571,22 +676,24 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
-				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStash/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -606,11 +713,10 @@
 		B6DA84972B801D290052ACFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77MX867GR8;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -629,11 +735,10 @@
 		B6DA84982B801D290052ACFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77MX867GR8;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -652,10 +757,9 @@
 		B6DA849A2B801D290052ACFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77MX867GR8;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -674,10 +778,9 @@
 		B6DA849B2B801D290052ACFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 77MX867GR8;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
