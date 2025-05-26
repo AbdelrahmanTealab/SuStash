@@ -19,7 +19,8 @@ class HomeViewModel: ObservableObject {
         savedItems.append(
             SavedItem(
                 title: "How to Use Custom Fonts in SwiftUI",
-                url: URL(string:"https://www.youtube.com/watch?v=4PI04Yj3Ngs")!
+                url: URL(string:"https://www.youtube.com/watch?v=4PI04Yj3Ngs")!,
+                tags: ["educational","swiftui","customfonts","ios","macos","xcode","programming","tutorial"]
                 )
         )
     }

@@ -3,15 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6088CB52DD40D1700BB74EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */; };
+		B6088CB82DD412B600BB74EF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B6088CB72DD412B600BB74EF /* FirebaseAnalytics */; };
 		B655FCEF2B82D2B500983B5D /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCEE2B82D2B500983B5D /* SavedItem.swift */; };
 		B655FCF32B82D53D00983B5D /* SavedItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */; };
 		B655FCF52B82D7C200983B5D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF42B82D7C200983B5D /* HomeViewModel.swift */; };
 		B655FCF72B82F27E00983B5D /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */; };
+		B6A5B4B52DD82F4100F3B565 /* SuStashShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA846E2B801D240052ACFD /* SuStashApp.swift */; };
 		B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84742B801D280052ACFD /* Assets.xcassets */; };
 		B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84782B801D280052ACFD /* Preview Assets.xcassets */; };
@@ -28,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B6A5B4B32DD82F4100F3B565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6A5B4AA2DD82F4100F3B565;
+			remoteInfo = SuStashShareExtension;
+		};
 		B6DA84802B801D280052ACFD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
@@ -44,12 +52,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B6A5B4A62DD82BBA00F3B565 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B6A5B4B52DD82F4100F3B565 /* SuStashShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B655FCEE2B82D2B500983B5D /* SavedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItem.swift; sourceTree = "<group>"; };
 		B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemCellView.swift; sourceTree = "<group>"; };
 		B655FCF42B82D7C200983B5D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewView.swift; sourceTree = "<group>"; };
+		B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuStashShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846B2B801D240052ACFD /* SuStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846E2B801D240052ACFD /* SuStashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashApp.swift; sourceTree = "<group>"; };
 		B6DA84742B801D280052ACFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,11 +94,33 @@
 		B6DA84BB2B81B0FD0052ACFD /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B6A5B4B62DD82F4100F3B565 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B6A5B4B62DD82F4100F3B565 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashShareExtension; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		B6A5B4A82DD82F4100F3B565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6DA84682B801D240052ACFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6088CB82DD412B600BB74EF /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +154,7 @@
 				B6DA846D2B801D240052ACFD /* SuStash */,
 				B6DA84822B801D290052ACFD /* SuStashTests */,
 				B6DA848C2B801D290052ACFD /* SuStashUITests */,
+				B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */,
 				B6DA846C2B801D240052ACFD /* Products */,
 				0B4C59BD248E17D60FB07D5B /* Frameworks */,
 			);
@@ -121,6 +166,7 @@
 				B6DA846B2B801D240052ACFD /* SuStash.app */,
 				B6DA847F2B801D280052ACFD /* SuStashTests.xctest */,
 				B6DA84892B801D290052ACFD /* SuStashUITests.xctest */,
+				B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,7 +183,6 @@
 				B6DA84742B801D280052ACFD /* Assets.xcassets */,
 				B6DA84762B801D280052ACFD /* SuStash.entitlements */,
 				B6DA847A2B801D280052ACFD /* Info.plist */,
-				B6088CB42DD40D1700BB74EF /* GoogleService-Info.plist */,
 				B6DA84BC2B81B1240052ACFD /* Fonts */,
 				B6DA84772B801D280052ACFD /* Preview Content */,
 			);
@@ -259,6 +304,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6A5B4B72DD82F4100F3B565 /* Build configuration list for PBXNativeTarget "SuStashShareExtension" */;
+			buildPhases = (
+				B6A5B4A72DD82F4100F3B565 /* Sources */,
+				B6A5B4A82DD82F4100F3B565 /* Frameworks */,
+				B6A5B4A92DD82F4100F3B565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */,
+			);
+			name = SuStashShareExtension;
+			packageProductDependencies = (
+			);
+			productName = SuStashShareExtension;
+			productReference = B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B6DA846A2B801D240052ACFD /* SuStash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6DA84932B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStash" */;
@@ -266,10 +333,12 @@
 				B6DA84672B801D240052ACFD /* Sources */,
 				B6DA84682B801D240052ACFD /* Frameworks */,
 				B6DA84692B801D240052ACFD /* Resources */,
+				B6A5B4A62DD82BBA00F3B565 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B6A5B4B42DD82F4100F3B565 /* PBXTargetDependency */,
 			);
 			name = SuStash;
 			productName = SuStash;
@@ -322,9 +391,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
+					B6A5B4AA2DD82F4100F3B565 = {
+						CreatedOnToolsVersion = 16.3;
+					};
 					B6DA846A2B801D240052ACFD = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -347,6 +419,9 @@
 				Base,
 			);
 			mainGroup = B6DA84622B801D240052ACFD;
+			packageReferences = (
+				B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = B6DA846C2B801D240052ACFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,18 +429,25 @@
 				B6DA846A2B801D240052ACFD /* SuStash */,
 				B6DA847E2B801D280052ACFD /* SuStashTests */,
 				B6DA84882B801D290052ACFD /* SuStashUITests */,
+				B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B6A5B4A92DD82F4100F3B565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6DA84692B801D240052ACFD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B6DA84792B801D280052ACFD /* Preview Assets.xcassets in Resources */,
 				B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */,
-				B6088CB52DD40D1700BB74EF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +536,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B6A5B4A72DD82F4100F3B565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6DA84672B801D240052ACFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +582,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B6A5B4B42DD82F4100F3B565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */;
+			targetProxy = B6A5B4B32DD82F4100F3B565 /* PBXContainerItemProxy */;
+		};
 		B6DA84812B801D280052ACFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B6DA846A2B801D240052ACFD /* SuStash */;
@@ -506,6 +600,63 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B6A5B4B82DD82F4100F3B565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6A5B4B92DD82F4100F3B565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B6DA84912B801D290052ACFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -659,6 +810,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -702,6 +854,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -799,6 +952,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B6A5B4B72DD82F4100F3B565 /* Build configuration list for PBXNativeTarget "SuStashShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6A5B4B82DD82F4100F3B565 /* Debug */,
+				B6A5B4B92DD82F4100F3B565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B6DA84662B801D240052ACFD /* Build configuration list for PBXProject "SuStash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -836,6 +998,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6088CB72DD412B600BB74EF /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6DA84632B801D240052ACFD /* Project object */;
 }

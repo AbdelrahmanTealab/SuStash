@@ -10,7 +10,6 @@ import SwiftData
 
 @main
 struct SuStashApp: App {
-
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
