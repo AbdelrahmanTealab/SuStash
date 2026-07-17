@@ -7,11 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B6088CB82DD412B600BB74EF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B6088CB72DD412B600BB74EF /* FirebaseAnalytics */; };
 		B655FCEF2B82D2B500983B5D /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCEE2B82D2B500983B5D /* SavedItem.swift */; };
 		B655FCF32B82D53D00983B5D /* SavedItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */; };
-		B655FCF52B82D7C200983B5D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF42B82D7C200983B5D /* HomeViewModel.swift */; };
-		B655FCF72B82F27E00983B5D /* LinkPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */; };
+		B655FD002B82D30000983B5D /* SharedLinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */; };
+		B655FE022B82D30000983B5D /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE012B82D30000983B5D /* SharedStore.swift */; };
+		B655FE032B82D30000983B5D /* SharedLinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */; };
+		B655FE052B82D30000983B5D /* LinkMetadataEnricher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE042B82D30000983B5D /* LinkMetadataEnricher.swift */; };
+		B655FE072B82D30000983B5D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE062B82D30000983B5D /* Theme.swift */; };
+		B655FE092B82D30000983B5D /* CollectionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE082B82D30000983B5D /* CollectionClassifier.swift */; };
+		B655FE0B2B82D30000983B5D /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE0A2B82D30000983B5D /* AppSettings.swift */; };
+		B655FE0D2B82D30000983B5D /* AnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE0C2B82D30000983B5D /* AnimatedImageView.swift */; };
+		B655FE0F2B82D30000983B5D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE0E2B82D30000983B5D /* EditItemView.swift */; };
+		B655FE112B82D30000983B5D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE102B82D30000983B5D /* SettingsView.swift */; };
+		B655FE152B82D30000983B5D /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE142B82D30000983B5D /* SpotlightIndexer.swift */; };
+		B655FE272B82D30000983B5D /* SuStashWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B655FE202B82D30000983B5D /* SuStashWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B655FE2D2B82D30000983B5D /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCEE2B82D2B500983B5D /* SavedItem.swift */; };
+		B655FE2E2B82D30000983B5D /* SharedLinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */; };
+		B655FE2F2B82D30000983B5D /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE012B82D30000983B5D /* SharedStore.swift */; };
+		B655FE302B82D30000983B5D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE062B82D30000983B5D /* Theme.swift */; };
+		B655FE342B82D30000983B5D /* ProStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE332B82D30000983B5D /* ProStore.swift */; };
+		B655FE362B82D30000983B5D /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE352B82D30000983B5D /* PaywallView.swift */; };
+		B655FE392B82D30000983B5D /* LinkIntelligence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE382B82D30000983B5D /* LinkIntelligence.swift */; };
+		B655FE422B82D30000983B5D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE412B82D30000983B5D /* OnboardingView.swift */; };
+		B655FE442B82D30000983B5D /* RediscoverReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE432B82D30000983B5D /* RediscoverReminder.swift */; };
+		B655FE462B82D30000983B5D /* SaveLinkIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE452B82D30000983B5D /* SaveLinkIntent.swift */; };
 		B6A5B4B52DD82F4100F3B565 /* SuStashShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA846E2B801D240052ACFD /* SuStashApp.swift */; };
 		B6DA84752B801D280052ACFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6DA84742B801D280052ACFD /* Assets.xcassets */; };
@@ -23,12 +42,17 @@
 		B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AA2B80247E0052ACFD /* CollectionsView.swift */; };
 		B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AC2B8024970052ACFD /* RecommendsView.swift */; };
 		B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AE2B8024A60052ACFD /* HomeView.swift */; };
-		B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */; };
-		B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */; };
 		B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B655FE282B82D30000983B5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B655FE212B82D30000983B5D;
+			remoteInfo = SuStashWidgets;
+		};
 		B6A5B4B32DD82F4100F3B565 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
@@ -60,6 +84,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				B6A5B4B52DD82F4100F3B565 /* SuStashShareExtension.appex in Embed Foundation Extensions */,
+				B655FE272B82D30000983B5D /* SuStashWidgets.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,8 +94,24 @@
 /* Begin PBXFileReference section */
 		B655FCEE2B82D2B500983B5D /* SavedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItem.swift; sourceTree = "<group>"; };
 		B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemCellView.swift; sourceTree = "<group>"; };
-		B655FCF42B82D7C200983B5D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPreviewView.swift; sourceTree = "<group>"; };
+		B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLinkMetadata.swift; sourceTree = "<group>"; };
+		B655FE012B82D30000983B5D /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
+		B655FE042B82D30000983B5D /* LinkMetadataEnricher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMetadataEnricher.swift; sourceTree = "<group>"; };
+		B655FE062B82D30000983B5D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B655FE082B82D30000983B5D /* CollectionClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionClassifier.swift; sourceTree = "<group>"; };
+		B655FE0A2B82D30000983B5D /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		B655FE0C2B82D30000983B5D /* AnimatedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedImageView.swift; sourceTree = "<group>"; };
+		B655FE0E2B82D30000983B5D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		B655FE102B82D30000983B5D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B655FE142B82D30000983B5D /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
+		B655FE202B82D30000983B5D /* SuStashWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuStashWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B655FE332B82D30000983B5D /* ProStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProStore.swift; sourceTree = "<group>"; };
+		B655FE352B82D30000983B5D /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		B655FE372B82D30000983B5D /* SuStash.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SuStash.storekit; sourceTree = "<group>"; };
+		B655FE382B82D30000983B5D /* LinkIntelligence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkIntelligence.swift; sourceTree = "<group>"; };
+		B655FE412B82D30000983B5D /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B655FE432B82D30000983B5D /* RediscoverReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RediscoverReminder.swift; sourceTree = "<group>"; };
+		B655FE452B82D30000983B5D /* SaveLinkIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLinkIntent.swift; sourceTree = "<group>"; };
 		B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuStashShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846B2B801D240052ACFD /* SuStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6DA846E2B801D240052ACFD /* SuStashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuStashApp.swift; sourceTree = "<group>"; };
@@ -87,14 +128,19 @@
 		B6DA84AA2B80247E0052ACFD /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		B6DA84AC2B8024970052ACFD /* RecommendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendsView.swift; sourceTree = "<group>"; };
 		B6DA84AE2B8024A60052ACFD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
-		B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		B6DA84BA2B81B0FD0052ACFD /* Avenir Next Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next Condensed.ttc"; sourceTree = "<group>"; };
 		B6DA84BB2B81B0FD0052ACFD /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B655FE262B82D30000983B5D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B655FE212B82D30000983B5D /* SuStashWidgets */;
+		};
 		B6A5B4B62DD82F4100F3B565 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -105,10 +151,18 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B655FE252B82D30000983B5D /* SuStashWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B655FE262B82D30000983B5D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashWidgets; sourceTree = "<group>"; };
 		B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B6A5B4B62DD82F4100F3B565 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashShareExtension; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B655FE232B82D30000983B5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6A5B4A82DD82F4100F3B565 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,7 +174,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6088CB82DD412B600BB74EF /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +201,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B655FE122B82D30000983B5D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B655FE102B82D30000983B5D /* SettingsView.swift */,
+				B655FE352B82D30000983B5D /* PaywallView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B655FE472B82D30000983B5D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B655FE412B82D30000983B5D /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		B6DA84622B801D240052ACFD = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +225,8 @@
 				B6DA84822B801D290052ACFD /* SuStashTests */,
 				B6DA848C2B801D290052ACFD /* SuStashUITests */,
 				B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */,
+				B655FE252B82D30000983B5D /* SuStashWidgets */,
+				B655FE372B82D30000983B5D /* SuStash.storekit */,
 				B6DA846C2B801D240052ACFD /* Products */,
 				0B4C59BD248E17D60FB07D5B /* Frameworks */,
 			);
@@ -167,6 +239,7 @@
 				B6DA847F2B801D280052ACFD /* SuStashTests.xctest */,
 				B6DA84892B801D290052ACFD /* SuStashUITests.xctest */,
 				B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */,
+				B655FE202B82D30000983B5D /* SuStashWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,20 +291,13 @@
 			isa = PBXGroup;
 			children = (
 				B6DA84A52B8023C80052ACFD /* Navigation */,
+				B655FE122B82D30000983B5D /* Settings */,
+				B655FE472B82D30000983B5D /* Onboarding */,
 				B6DA84A02B80217D0052ACFD /* Collections */,
 				B6DA849F2B8021770052ACFD /* Recommends */,
 				B6DA849E2B80216F0052ACFD /* Home */,
-				B6DA849D2B8021660052ACFD /* Authentication */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B6DA849D2B8021660052ACFD /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				B6DA84B02B8024CF0052ACFD /* AuthenticationView.swift */,
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		B6DA849E2B80216F0052ACFD /* Home */ = {
@@ -239,7 +305,7 @@
 			children = (
 				B6DA84AE2B8024A60052ACFD /* HomeView.swift */,
 				B655FCF22B82D53D00983B5D /* SavedItemCellView.swift */,
-				B655FCF62B82F27E00983B5D /* LinkPreviewView.swift */,
+				B655FE0E2B82D30000983B5D /* EditItemView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -264,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				B655FCEE2B82D2B500983B5D /* SavedItem.swift */,
+				B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,8 +338,6 @@
 		B6DA84A32B8022F60052ACFD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B6DA84B42B802E190052ACFD /* AuthenticationViewModel.swift */,
-				B655FCF42B82D7C200983B5D /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -280,6 +345,17 @@
 		B6DA84A42B80232C0052ACFD /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B655FE012B82D30000983B5D /* SharedStore.swift */,
+				B655FE042B82D30000983B5D /* LinkMetadataEnricher.swift */,
+				B655FE062B82D30000983B5D /* Theme.swift */,
+				B655FE082B82D30000983B5D /* CollectionClassifier.swift */,
+				B655FE142B82D30000983B5D /* SpotlightIndexer.swift */,
+				B655FE332B82D30000983B5D /* ProStore.swift */,
+				B655FE382B82D30000983B5D /* LinkIntelligence.swift */,
+				B655FE432B82D30000983B5D /* RediscoverReminder.swift */,
+				B655FE452B82D30000983B5D /* SaveLinkIntent.swift */,
+				B655FE0A2B82D30000983B5D /* AppSettings.swift */,
+				B655FE0C2B82D30000983B5D /* AnimatedImageView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -304,6 +380,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B655FE212B82D30000983B5D /* SuStashWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B655FE2A2B82D30000983B5D /* Build configuration list for PBXNativeTarget "SuStashWidgets" */;
+			buildPhases = (
+				B655FE222B82D30000983B5D /* Sources */,
+				B655FE232B82D30000983B5D /* Frameworks */,
+				B655FE242B82D30000983B5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B655FE252B82D30000983B5D /* SuStashWidgets */,
+			);
+			name = SuStashWidgets;
+			packageProductDependencies = (
+			);
+			productName = SuStashWidgets;
+			productReference = B655FE202B82D30000983B5D /* SuStashWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6A5B4B72DD82F4100F3B565 /* Build configuration list for PBXNativeTarget "SuStashShareExtension" */;
@@ -339,6 +437,7 @@
 			);
 			dependencies = (
 				B6A5B4B42DD82F4100F3B565 /* PBXTargetDependency */,
+				B655FE292B82D30000983B5D /* PBXTargetDependency */,
 			);
 			name = SuStash;
 			productName = SuStash;
@@ -349,7 +448,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6DA84962B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashTests" */;
 			buildPhases = (
-				E869E62363BCE4E3C91DCFF6 /* [CP] Check Pods Manifest.lock */,
 				B6DA847B2B801D280052ACFD /* Sources */,
 				B6DA847C2B801D280052ACFD /* Frameworks */,
 				B6DA847D2B801D280052ACFD /* Resources */,
@@ -368,11 +466,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6DA84992B801D290052ACFD /* Build configuration list for PBXNativeTarget "SuStashUITests" */;
 			buildPhases = (
-				CFFA78F5C301E8F81A09B5F6 /* [CP] Check Pods Manifest.lock */,
 				B6DA84852B801D290052ACFD /* Sources */,
 				B6DA84862B801D290052ACFD /* Frameworks */,
 				B6DA84872B801D290052ACFD /* Resources */,
-				F1858639A6FA7FEC93E8544C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -420,7 +516,6 @@
 			);
 			mainGroup = B6DA84622B801D240052ACFD;
 			packageReferences = (
-				B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B6DA846C2B801D240052ACFD /* Products */;
 			projectDirPath = "";
@@ -430,11 +525,19 @@
 				B6DA847E2B801D280052ACFD /* SuStashTests */,
 				B6DA84882B801D290052ACFD /* SuStashUITests */,
 				B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */,
+				B655FE212B82D30000983B5D /* SuStashWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B655FE242B82D30000983B5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6A5B4A92DD82F4100F3B565 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,79 +570,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		CFFA78F5C301E8F81A09B5F6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SuStash-SuStashUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E869E62363BCE4E3C91DCFF6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SuStashTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1858639A6FA7FEC93E8544C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuStash-SuStashUITests/Pods-SuStash-SuStashUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
+		B655FE222B82D30000983B5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B655FE2D2B82D30000983B5D /* SavedItem.swift in Sources */,
+				B655FE2E2B82D30000983B5D /* SharedLinkMetadata.swift in Sources */,
+				B655FE2F2B82D30000983B5D /* SharedStore.swift in Sources */,
+				B655FE302B82D30000983B5D /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6A5B4A72DD82F4100F3B565 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B655FE032B82D30000983B5D /* SharedLinkMetadata.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,16 +595,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */,
-				B655FCF52B82D7C200983B5D /* HomeViewModel.swift in Sources */,
-				B6DA84B12B8024CF0052ACFD /* AuthenticationView.swift in Sources */,
-				B655FCF72B82F27E00983B5D /* LinkPreviewView.swift in Sources */,
+				B655FE022B82D30000983B5D /* SharedStore.swift in Sources */,
+				B655FE052B82D30000983B5D /* LinkMetadataEnricher.swift in Sources */,
+				B655FE072B82D30000983B5D /* Theme.swift in Sources */,
+				B655FE092B82D30000983B5D /* CollectionClassifier.swift in Sources */,
+				B655FE152B82D30000983B5D /* SpotlightIndexer.swift in Sources */,
+				B655FE342B82D30000983B5D /* ProStore.swift in Sources */,
+				B655FE392B82D30000983B5D /* LinkIntelligence.swift in Sources */,
+				B655FE422B82D30000983B5D /* OnboardingView.swift in Sources */,
+				B655FE442B82D30000983B5D /* RediscoverReminder.swift in Sources */,
+				B655FE462B82D30000983B5D /* SaveLinkIntent.swift in Sources */,
+				B655FE362B82D30000983B5D /* PaywallView.swift in Sources */,
+				B655FE0B2B82D30000983B5D /* AppSettings.swift in Sources */,
+				B655FE0D2B82D30000983B5D /* AnimatedImageView.swift in Sources */,
+				B655FE0F2B82D30000983B5D /* EditItemView.swift in Sources */,
+				B655FE112B82D30000983B5D /* SettingsView.swift in Sources */,
 				B6DA84AB2B80247E0052ACFD /* CollectionsView.swift in Sources */,
-				B6DA84B52B802E190052ACFD /* AuthenticationViewModel.swift in Sources */,
 				B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */,
 				B6DA84A72B80241A0052ACFD /* TabBarView.swift in Sources */,
 				B6DA846F2B801D240052ACFD /* SuStashApp.swift in Sources */,
 				B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */,
 				B655FCEF2B82D2B500983B5D /* SavedItem.swift in Sources */,
+				B655FD002B82D30000983B5D /* SharedLinkMetadata.swift in Sources */,
 				B655FCF32B82D53D00983B5D /* SavedItemCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +641,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B655FE292B82D30000983B5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B655FE212B82D30000983B5D /* SuStashWidgets */;
+			targetProxy = B655FE282B82D30000983B5D /* PBXContainerItemProxy */;
+		};
 		B6A5B4B42DD82F4100F3B565 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */;
@@ -600,13 +664,70 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B655FE2B2B82D30000983B5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SuStashWidgets/SuStashWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B655FE2C2B82D30000983B5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SuStashWidgets/SuStashWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B6A5B4B82DD82F4100F3B565 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
@@ -634,7 +755,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
@@ -783,9 +904,10 @@
 				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
+				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -827,9 +949,10 @@
 				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
+				DEVELOPMENT_TEAM = 77MX867GR8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -868,7 +991,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -890,7 +1013,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -911,7 +1034,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -932,7 +1055,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -952,6 +1075,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B655FE2A2B82D30000983B5D /* Build configuration list for PBXNativeTarget "SuStashWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B655FE2B2B82D30000983B5D /* Debug */,
+				B655FE2C2B82D30000983B5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B6A5B4B72DD82F4100F3B565 /* Build configuration list for PBXNativeTarget "SuStashShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -998,25 +1130,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.12.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		B6088CB72DD412B600BB74EF /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B6088CB62DD412B600BB74EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6DA84632B801D240052ACFD /* Project object */;
 }
