@@ -19,6 +19,7 @@ struct SettingsView: View {
     @AppStorage(SharedStore.syncEnabledKey, store: AppSettings.store) private var syncEnabled = false
 
     @State private var proStore = ProStore.shared
+    @State private var syncMonitor = SyncMonitor.shared
     @State private var showPaywall = false
     @AppStorage(RediscoverReminder.enabledKey, store: AppSettings.store) private var reminderEnabled = false
     @State private var showNotificationsDeniedAlert = false
@@ -239,8 +240,24 @@ struct SettingsView: View {
             }
 
             if proStore.isPro {
-                Toggle(isOn: $syncEnabled) {
+                Toggle(isOn: syncBinding) {
                     Label("iCloud Sync", systemImage: "arrow.triangle.2.circlepath.icloud")
+                }
+
+                if syncEnabled {
+                    HStack(spacing: 8) {
+                        Image(systemName: syncMonitor.lastErrorText == nil ? "checkmark.circle" : "exclamationmark.triangle")
+                            .foregroundStyle(syncMonitor.lastErrorText == nil ? AnyShapeStyle(.secondary) : AnyShapeStyle(.orange))
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(syncMonitor.statusText)
+                                .font(AppTheme.bodyFont(14))
+                            if let error = syncMonitor.lastErrorText {
+                                Text(error)
+                                    .font(AppTheme.captionFont(12))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             } else {
                 Button {
@@ -257,9 +274,21 @@ struct SettingsView: View {
             Text("iCloud")
         } footer: {
             if proStore.isPro {
-                Text("Sync changes take effect the next time SuStash launches.")
+                Text("Your links sync through your private iCloud. Turning sync on uploads this device's saves and downloads the rest.")
             }
         }
+    }
+
+    /// Applies immediately: rebuilds the store container with (or without)
+    /// CloudKit mirroring — no relaunch, which macOS users rarely do.
+    private var syncBinding: Binding<Bool> {
+        Binding(
+            get: { syncEnabled },
+            set: { newValue in
+                syncEnabled = newValue
+                StoreHolder.shared.rebuildForSyncChange()
+            }
+        )
     }
 
     private var proBadge: some View {

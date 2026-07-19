@@ -210,7 +210,7 @@ private struct RediscoverCard: View {
                     .font(AppTheme.headingFont(13))
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-                Text(item.host)
+                Text(item.displaySubtitle)
                     .font(AppTheme.captionFont(11))
                     .foregroundStyle(.secondary)
                     .lineLimit(1)

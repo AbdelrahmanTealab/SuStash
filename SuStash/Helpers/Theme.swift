@@ -22,6 +22,8 @@ enum ThemeChoice: String, CaseIterable, Identifiable {
     case ocean
     case forest
     case mono
+    case ozmantus
+    case motta
 
     var id: String { rawValue }
 
@@ -35,6 +37,8 @@ enum ThemeChoice: String, CaseIterable, Identifiable {
         case .ocean: "Ocean"
         case .forest: "Forest"
         case .mono: "Mono"
+        case .ozmantus: "Ozmantus"
+        case .motta: "Motta"
         }
     }
 
@@ -50,6 +54,8 @@ enum ThemeFontStyle {
     case typewriter
     case futura
     case gillSans
+    case copperplate
+    case script
 
     func font(size: CGFloat, weight: Font.Weight) -> Font {
         switch self {
@@ -66,6 +72,14 @@ enum ThemeFontStyle {
             return .custom(weight == .regular ? "Futura-Medium" : "Futura-Bold", size: size)
         case .gillSans:
             return .custom(weight == .regular ? "GillSans" : "GillSans-SemiBold", size: size)
+        case .copperplate:
+            // Engraved display face — closest iOS-built-in to Herculanum,
+            // which only ships on macOS.
+            return .custom(weight == .regular ? "Copperplate" : "Copperplate-Bold", size: size)
+        case .script:
+            // Closest iOS-built-in to Brush Script MT (macOS/Monotype only).
+            // Swap the names here once a licensed/OFL brush face is bundled.
+            return .custom(weight == .regular ? "SnellRoundhand" : "SnellRoundhand-Bold", size: size)
         }
     }
 
@@ -77,6 +91,8 @@ enum ThemeFontStyle {
         case .typewriter: "AmericanTypewriter-Bold"
         case .futura: bold ? "Futura-Bold" : "Futura-Medium"
         case .gillSans: bold ? "GillSans-Bold" : "GillSans-SemiBold"
+        case .copperplate: bold ? "Copperplate-Bold" : "Copperplate"
+        case .script: bold ? "SnellRoundhand-Bold" : "SnellRoundhand"
         case .rounded, .serif, .mono: nil // system designs handled separately
         }
     }
@@ -176,6 +192,21 @@ struct ThemeSpec {
                 backgroundLight: (0.97, 0.97, 0.97), backgroundDark: (0.04, 0.04, 0.04),
                 cardLight: (1, 1, 1), cardDark: (0.09, 0.09, 0.09),
                 headingStyle: .helvetica, bodyStyle: .helvetica, linePattern: .beams
+            )
+        case .ozmantus:
+            ThemeSpec(
+                accentLight: (0.88, 0.44, 0.06), accentDark: (1.00, 0.60, 0.20),
+                backgroundLight: (0.985, 0.955, 0.915), backgroundDark: (0.10, 0.055, 0.015),
+                cardLight: (1.00, 0.99, 0.97), cardDark: (0.17, 0.10, 0.04),
+                headingStyle: .copperplate, bodyStyle: .helvetica, linePattern: .curves
+            )
+        case .motta:
+            // Emerald accent over sage-tinted surfaces.
+            ThemeSpec(
+                accentLight: (0.00, 0.58, 0.36), accentDark: (0.22, 0.83, 0.55),
+                backgroundLight: (0.935, 0.955, 0.925), backgroundDark: (0.05, 0.085, 0.06),
+                cardLight: (0.98, 1.00, 0.975), cardDark: (0.10, 0.15, 0.105),
+                headingStyle: .script, bodyStyle: .helvetica, linePattern: .waves
             )
         }
     }

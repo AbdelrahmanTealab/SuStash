@@ -62,6 +62,71 @@ enum LinkEmbedder {
     }
 }
 
+// MARK: - Content keywords
+
+/// Pulls topic keywords out of a page's text for auto-tagging: strips the
+/// HTML, then counts noun lemmas via NaturalLanguage. Conservative on
+/// purpose — a wrong tag is worse than no tag.
+enum ContentKeywords {
+    private static let stopwords: Set<String> = [
+        "about", "after", "also", "back", "because", "been", "before", "being",
+        "cookie", "cookies", "content", "copyright", "email", "every", "first",
+        "from", "have", "here", "home", "into", "just", "like", "login", "menu",
+        "more", "most", "news", "only", "other", "over", "page", "part", "people",
+        "policy", "privacy", "rights", "search", "share", "sign", "site", "some",
+        "terms", "than", "that", "them", "then", "there", "these", "they", "this",
+        "time", "today", "under", "video", "view", "website", "were", "what",
+        "when", "where", "which", "while", "will", "with", "would", "your", "year",
+    ]
+
+    static func extract(fromHTML html: String, excluding: Set<String> = [], limit: Int = 3) -> [String] {
+        let text = plainText(fromHTML: html)
+        guard text.count > 200 else { return [] }
+
+        let tagger = NLTagger(tagSchemes: [.lexicalClass, .lemma])
+        let sample = String(text.prefix(6000))
+        tagger.string = sample
+
+        var counts: [String: Int] = [:]
+        tagger.enumerateTags(
+            in: sample.startIndex..<sample.endIndex,
+            unit: .word,
+            scheme: .lexicalClass,
+            options: [.omitPunctuation, .omitWhitespace, .omitOther]
+        ) { tag, range in
+            guard tag == .noun else { return true }
+            let word = sample[range].lowercased()
+            let (lemmaTag, _) = tagger.tag(at: range.lowerBound, unit: .word, scheme: .lemma)
+            let keyword = (lemmaTag?.rawValue.lowercased() ?? word)
+            guard keyword.count >= 4,
+                  keyword.allSatisfy(\.isLetter),
+                  !stopwords.contains(keyword),
+                  !excluding.contains(keyword) else { return true }
+            counts[keyword, default: 0] += 1
+            return true
+        }
+
+        return counts
+            .filter { $0.value >= 3 }
+            .sorted { ($0.value, $1.key) > ($1.value, $0.key) }
+            .prefix(limit)
+            .map(\.key)
+    }
+
+    /// Crude but dependency-free: drop script/style blocks, then all tags.
+    static func plainText(fromHTML html: String) -> String {
+        var text = html
+        for pattern in ["<script[^>]*>[\\s\\S]*?</script>", "<style[^>]*>[\\s\\S]*?</style>", "<[^>]+>"] {
+            text = text.replacingOccurrences(of: pattern, with: " ", options: [.regularExpression, .caseInsensitive])
+        }
+        return text
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
 // MARK: - Personal auto-filer
 
 /// Files new links the way the user files theirs: k-nearest-neighbors over

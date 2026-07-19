@@ -25,7 +25,10 @@ struct CollectionsView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \SavedItem.dateSaved, order: .reverse) private var savedItems: [SavedItem]
-    @State private var mode: Mode = .collections
+    // `-libraryMode media|tags` launch arg presets the segment for
+    // simctl-driven screenshots, same pattern as -initialTab.
+    @State private var mode: Mode = UserDefaults.standard.string(forKey: "libraryMode")
+        .flatMap({ raw in Mode.allCases.first { $0.rawValue.lowercased() == raw.lowercased() } }) ?? .collections
     @State private var sort: Sort = .mostItems
     // Statistics display toggle. `-libraryStats` launch arg (auto-registered
     // into UserDefaults.standard) presets it for simctl-driven screenshots.
@@ -342,28 +345,34 @@ struct CollectionsView: View {
 
     // MARK: - Media grid
 
-    private var visualItems: [SavedItem] {
-        savedItems.filter { $0.mediaType == .gif || $0.mediaType == .image }
+    /// Every media type with content, in a fixed browse order. Covers both
+    /// links (a YouTube video is a video) and saved files.
+    private var mediaSections: [(title: String, type: MediaType, items: [SavedItem])] {
+        let order: [(String, MediaType)] = [
+            ("GIFs", .gif), ("Images", .image), ("Videos", .video),
+            ("PDFs", .pdf), ("Audio", .audio), ("Documents", .document),
+        ]
+        return order.compactMap { title, type in
+            let matches = savedItems.filter { $0.mediaType == type }
+            return matches.isEmpty ? nil : (title, type, matches)
+        }
     }
 
-    /// Photo-style grid: GIFs animate in place, images are static tiles.
+    private var visualItems: [SavedItem] {
+        mediaSections.flatMap(\.items)
+    }
+
+    /// Photo-style grids per type: GIFs animate, videos and PDFs show their
+    /// thumbnails with a type badge, audio/documents fall back to icon tiles.
     private var mediaGrid: some View {
-        let gifs = visualItems.filter { $0.mediaType == .gif }
-        let images = visualItems.filter { $0.mediaType == .image }
         let columns = [GridItem(.flexible(), spacing: 3), GridItem(.flexible(), spacing: 3), GridItem(.flexible(), spacing: 3)]
 
         return ScrollView {
             LazyVStack(alignment: .leading, spacing: 8, pinnedViews: []) {
-                if !gifs.isEmpty {
-                    mediaSectionHeader("GIFs", count: gifs.count)
+                ForEach(mediaSections, id: \.title) { section in
+                    mediaSectionHeader(section.title, count: section.items.count)
                     LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(gifs) { MediaTile(item: $0) }
-                    }
-                }
-                if !images.isEmpty {
-                    mediaSectionHeader("Images", count: images.count)
-                    LazyVGrid(columns: columns, spacing: 3) {
-                        ForEach(images) { MediaTile(item: $0) }
+                        ForEach(section.items) { MediaTile(item: $0) }
                     }
                 }
             }
@@ -393,17 +402,38 @@ struct CollectionsView: View {
                 .overlay(tileContent)
                 .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                 .overlay(alignment: .topTrailing) {
-                    if item.mediaType == .gif {
-                        Text("GIF")
-                            .font(AppTheme.headingFont(9))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 2)
-                            .background(.black.opacity(0.55), in: Capsule())
-                            .padding(5)
-                    }
+                    typeBadge
                 }
                 .savedItemInteractions(item)
+        }
+
+        @ViewBuilder
+        private var typeBadge: some View {
+            switch item.mediaType {
+            case .gif:
+                badgeCapsule(text: "GIF")
+            case .pdf:
+                badgeCapsule(text: "PDF")
+            case .video:
+                Image(systemName: "play.fill")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundStyle(.white)
+                    .padding(5)
+                    .background(.black.opacity(0.55), in: Circle())
+                    .padding(5)
+            default:
+                EmptyView()
+            }
+        }
+
+        private func badgeCapsule(text: String) -> some View {
+            Text(text)
+                .font(AppTheme.headingFont(9))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 5)
+                .padding(.vertical, 2)
+                .background(.black.opacity(0.55), in: Capsule())
+                .padding(5)
         }
 
         @ViewBuilder
@@ -430,7 +460,7 @@ struct CollectionsView: View {
         ContentUnavailableView {
             Label("No media yet", systemImage: "photo.stack")
         } description: {
-            Text("GIFs and images you save will show up here as a grid.")
+            Text("GIFs, images, videos, PDFs, and other files you save will show up here.")
         }
     }
 

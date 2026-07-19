@@ -188,6 +188,18 @@ final class CollectionClassifierTests: XCTestCase {
         XCTAssertEqual(suggest("Storm hits coast", "https://news.sky.com/story/abc", .article), "News", "host containing 'news' should classify as News")
     }
 
+    func testSingleWordKeywordsRequireWholeWords() {
+        // "matching" must not trigger the Sports keyword "match".
+        XCTAssertEqual(
+            suggest("Feature Matching for Autonomous Self-Driving Vehicles", "https://example.com/paper.pdf", .pdf),
+            "Documents"
+        )
+        // Whole-word "match" still classifies as Sports.
+        XCTAssertEqual(suggest("Incredible match highlights", "https://example.com/v", .video), "Sports")
+        // Phrase keywords keep working.
+        XCTAssertEqual(suggest("How to make pizza dough", "https://youtube.com/watch?v=1", .video), "Recipes")
+    }
+
     func testSpecificRuleBeatsBroadRule() {
         // "how to make" is both recipe-ish and educational — recipes must win.
         XCTAssertEqual(suggest("How to make sourdough bread", "https://youtube.com/watch?v=4", .video), "Recipes")
@@ -234,6 +246,154 @@ final class LinkMetadataEnricherTests: XCTestCase {
 
     func testThumbnailRejectsZeroSizedImage() {
         XCTAssertNil(LinkMetadataEnricher.thumbnailData(from: UIImage()))
+    }
+}
+
+final class ContentKeywordsTests: XCTestCase {
+    func testExtractsDominantNouns() {
+        let paragraph = "The sourdough starter needs flour and water. Feed the starter daily; healthy starter makes the bread rise. Mix flour, salt, and water, then fold the dough. Rest the dough, shape the dough, and bake the bread on a stone. Good bread needs patience and a lively starter, plus quality flour."
+        let html = "<html><head><script>var x=1;</script></head><body><p>\(paragraph)</p><p>\(paragraph)</p></body></html>"
+
+        let keywords = ContentKeywords.extract(fromHTML: html)
+        XCTAssertFalse(keywords.isEmpty)
+        XCTAssertTrue(
+            Set(keywords).isSubset(of: ["starter", "flour", "bread", "dough", "water"]),
+            "unexpected keywords: \(keywords)"
+        )
+    }
+
+    func testShortOrScriptOnlyPagesYieldNothing() {
+        XCTAssertTrue(ContentKeywords.extract(fromHTML: "<p>hi</p>").isEmpty)
+        XCTAssertTrue(ContentKeywords.extract(fromHTML: "<script>" + String(repeating: "code();", count: 200) + "</script>").isEmpty)
+    }
+
+    func testPlainTextStripsMarkup() {
+        let text = ContentKeywords.plainText(fromHTML: "<div>Hello <b>world</b>&nbsp;&amp; friends<style>.x{}</style></div>")
+        XCTAssertEqual(text, "Hello world & friends")
+    }
+}
+
+final class FileTypeInferenceTests: XCTestCase {
+    func testMediaTypeFromTypeIdentifier() {
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "com.adobe.pdf"), .pdf)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "com.compuserve.gif"), .gif)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "public.jpeg"), .image)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "public.mpeg-4"), .video)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "public.mp3"), .audio)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "public.data"), .document)
+        XCTAssertEqual(MediaType.inferred(fromTypeIdentifier: "garbage.nonsense.type"), .document)
+    }
+}
+
+@MainActor
+final class FileImportTests: XCTestCase {
+    private var container: ModelContainer!
+    private var defaults: UserDefaults!
+    private let suiteName = "FileImportTests"
+
+    override func setUp() async throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        container = try ModelContainer(for: SavedItem.self, configurations: config)
+        defaults = UserDefaults(suiteName: suiteName)
+        defaults.removePersistentDomain(forName: suiteName)
+    }
+
+    override func tearDown() async throws {
+        defaults.removePersistentDomain(forName: suiteName)
+    }
+
+    func testFileEntryImportsBytesAndCleansInbox() throws {
+        let inbox = try XCTUnwrap(AppGroup.fileInboxURL, "test host must have the app group")
+        try FileManager.default.createDirectory(at: inbox, withIntermediateDirectories: true)
+        let token = "test-\(UUID().uuidString).pdf"
+        let bytes = Data("pdf-bytes".utf8)
+        try bytes.write(to: inbox.appendingPathComponent(token))
+
+        var metadata = SharedLinkMetadata(url: "", collection: "", tags: [], mediaType: "pdf", notes: nil, autoOrganize: true)
+        metadata.fileToken = token
+        metadata.originalFileName = "Guitar Manual.pdf"
+        defaults.set(try JSONEncoder().encode([metadata]), forKey: AppGroup.sharedLinkQueueKey)
+
+        SharedLinkImporter.drainPendingSharedLinks(into: container.mainContext, defaults: defaults)
+
+        let items = try container.mainContext.fetch(FetchDescriptor<SavedItem>())
+        XCTAssertEqual(items.count, 1)
+        let item = try XCTUnwrap(items.first)
+        XCTAssertTrue(item.isFile)
+        XCTAssertEqual(item.fileData, bytes)
+        XCTAssertEqual(item.title, "Guitar Manual")
+        XCTAssertEqual(item.mediaType, .pdf)
+        XCTAssertTrue(item.needsAutoCollection)
+        XCTAssertFalse(
+            FileManager.default.fileExists(atPath: inbox.appendingPathComponent(token).path),
+            "inbox file must be deleted after a successful import"
+        )
+    }
+
+    func testMissingInboxFileDropsEntryWithoutCrashing() throws {
+        var metadata = SharedLinkMetadata(url: "", collection: "", tags: [], mediaType: "pdf", notes: nil)
+        metadata.fileToken = "does-not-exist.pdf"
+        defaults.set(try JSONEncoder().encode([metadata]), forKey: AppGroup.sharedLinkQueueKey)
+
+        SharedLinkImporter.drainPendingSharedLinks(into: container.mainContext, defaults: defaults)
+
+        XCTAssertEqual(try container.mainContext.fetch(FetchDescriptor<SavedItem>()).count, 0)
+        XCTAssertNil(defaults.data(forKey: AppGroup.sharedLinkQueueKey), "queue must still be cleared")
+    }
+}
+
+@MainActor
+final class SyncDuplicateMergeTests: XCTestCase {
+    private var container: ModelContainer!
+
+    override func setUp() async throws {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        container = try ModelContainer(for: SavedItem.self, configurations: config)
+    }
+
+    func testDuplicatesMergeIntoUserCuratedSurvivor() throws {
+        let context = container.mainContext
+
+        let autoItem = SavedItem(title: "example.com", urlString: "https://example.com/a", dateSaved: Date(timeIntervalSinceReferenceDate: 100))
+        autoItem.collection = "Reading List"
+        autoItem.isFavorite = true
+        autoItem.tags = ["one"]
+
+        let userItem = SavedItem(title: "A Nice Page", urlString: "https://example.com/a", dateSaved: Date(timeIntervalSinceReferenceDate: 500))
+        userItem.collection = "Handpicked"
+        userItem.collectionSetByUser = true
+        userItem.tags = ["two"]
+
+        let unrelated = SavedItem(title: "Other", urlString: "https://example.com/b")
+        [autoItem, userItem, unrelated].forEach(context.insert)
+        try context.save()
+
+        LinkMetadataEnricher.mergeSyncDuplicates(
+            in: try context.fetch(FetchDescriptor<SavedItem>()),
+            context: context
+        )
+
+        let remaining = try context.fetch(FetchDescriptor<SavedItem>())
+        XCTAssertEqual(remaining.count, 2)
+
+        let survivor = try XCTUnwrap(remaining.first { $0.urlString.hasSuffix("/a") })
+        XCTAssertEqual(survivor.collection, "Handpicked", "user-curated collection must win")
+        XCTAssertTrue(survivor.collectionSetByUser)
+        XCTAssertTrue(survivor.isFavorite, "favorite from the loser must carry over")
+        XCTAssertEqual(survivor.dateSaved, Date(timeIntervalSinceReferenceDate: 100), "earliest save date wins")
+        XCTAssertEqual(Set(survivor.tags), ["one", "two"], "tags union")
+    }
+
+    func testNoDuplicatesIsANoOp() throws {
+        let context = container.mainContext
+        context.insert(SavedItem(title: "A", urlString: "https://example.com/a"))
+        try context.save()
+
+        LinkMetadataEnricher.mergeSyncDuplicates(
+            in: try context.fetch(FetchDescriptor<SavedItem>()),
+            context: context
+        )
+        XCTAssertEqual(try context.fetch(FetchDescriptor<SavedItem>()).count, 1)
     }
 }
 

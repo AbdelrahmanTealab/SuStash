@@ -22,6 +22,10 @@ struct SuStashApp: App {
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
+                // Re-root the tree when the container is rebuilt (sync
+                // toggled): @Query views bind to the new container and the
+                // root .task refires the pipeline.
+                .id(StoreHolder.shared.generation)
                 .tint(AppTheme.accent)
                 .preferredColorScheme(
                     (AppearanceOverride(rawValue: appearanceRaw) ?? .system).colorScheme
@@ -30,6 +34,7 @@ struct SuStashApp: App {
                 .onContinueUserActivity(CSSearchableItemActionType, perform: handleSpotlightResult)
                 .task {
                     ProStore.shared.start()
+                    _ = SyncMonitor.shared  // start observing before first sync event
                     // Cold-launch pass, independent of scenePhase: a system
                     // alert (permissions, Apple Account) can hold the scene
                     // at .inactive indefinitely, and saved links must import

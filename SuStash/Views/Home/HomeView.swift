@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import UIKit
+import UniformTypeIdentifiers
 
 enum HomeViewMode: String, CaseIterable, Identifiable {
     case list
@@ -53,10 +54,19 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \SavedItem.dateSaved, order: .reverse) private var savedItems: [SavedItem]
 
+    /// Pending + button save, shown in the Auto/Manual composer sheet.
+    struct ComposerPayload: Identifiable {
+        let id = UUID()
+        let input: ComposerInput
+        var fileData: Data?
+        var fileName: String?
+    }
+
     @State private var filter: HomeFilter = .recents
     @State private var searchText = ""
     @State private var isSearching = false
     @State private var showSettings = false
+    @State private var composer: ComposerPayload?
     @State private var pasteMessage: String?
     @FocusState private var searchFieldFocused: Bool
     @AppStorage(AppSettings.homeViewModeKey, store: AppSettings.store) private var viewModeRaw = HomeViewMode.list.rawValue
@@ -87,6 +97,16 @@ struct HomeView: View {
         .background(ThemedScreenBackground())
         .sheet(isPresented: $showSettings) {
             SettingsView()
+        }
+        .sheet(item: $composer) { payload in
+            SaveComposerView(
+                input: payload.input,
+                onSave: { metadata in
+                    persistComposerSave(metadata, payload: payload)
+                    composer = nil
+                },
+                onCancel: { composer = nil }
+            )
         }
         .alert(
             pasteMessage ?? "",
@@ -288,31 +308,78 @@ struct HomeView: View {
         }
     }
 
-    /// Save whatever URL is on the clipboard, auto-organized. The fast path
-    /// for "copied a link somewhere, want it stashed".
+    /// The + button: detect what's on the clipboard (link, image, GIF, or
+    /// PDF) and open the Auto/Manual composer for it — same sheet as the
+    /// share extension, saving happens only on Save.
     private func saveFromClipboard() {
         let pasteboard = UIPasteboard.general
-        let url = pasteboard.url ?? pasteboard.string.flatMap { text in
-            let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            let match = detector?.firstMatch(in: text, range: NSRange(text.startIndex..., in: text))
-            return match?.url
-        }
 
-        guard let url else {
-            pasteMessage = "No link found on the clipboard."
-            return
-        }
-        if savedItems.contains(where: { $0.urlString == url.absoluteString }) {
-            pasteMessage = "That link is already saved."
+        if let url = pasteboard.url ?? pasteboard.string.flatMap(Self.firstURL(in:)) {
+            if savedItems.contains(where: { $0.urlString == url.absoluteString }) {
+                pasteMessage = "That link is already saved."
+                return
+            }
+            composer = ComposerPayload(input: .url(url))
             return
         }
 
-        let item = SavedItem(
-            title: url.host ?? url.absoluteString,
-            urlString: url.absoluteString,
-            mediaType: .inferred(from: url)
+        if let gifData = pasteboard.data(forPasteboardType: UTType.gif.identifier) {
+            presentFileComposer(data: gifData, name: "Pasted GIF.gif", type: .gif)
+            return
+        }
+        if let image = pasteboard.image, let data = image.jpegData(compressionQuality: 0.9) {
+            presentFileComposer(data: data, name: "Pasted Image.jpg", type: .image)
+            return
+        }
+        if let pdfData = pasteboard.data(forPasteboardType: UTType.pdf.identifier) {
+            presentFileComposer(data: pdfData, name: "Pasted Document.pdf", type: .pdf)
+            return
+        }
+
+        pasteMessage = "No link, image, or document found on the clipboard."
+    }
+
+    private func presentFileComposer(data: Data, name: String, type: MediaType) {
+        let oversized = data.count > AppGroup.maxSavedFileBytes
+        composer = ComposerPayload(
+            input: .file(displayName: name, mediaType: type, oversized: oversized),
+            fileData: oversized ? nil : data,
+            fileName: name
         )
-        item.needsAutoCollection = true
+    }
+
+    /// Same semantics as the share-extension importer, but writes straight
+    /// into the store since we're already in the app.
+    private func persistComposerSave(_ metadata: SharedLinkMetadata, payload: ComposerPayload) {
+        let collection = metadata.collection.isEmpty ? nil : metadata.collection
+
+        let item: SavedItem
+        switch payload.input {
+        case .url(let url):
+            item = SavedItem(
+                title: url.host ?? url.absoluteString,
+                urlString: url.absoluteString,
+                mediaType: MediaType(rawValue: metadata.mediaType) ?? .inferred(from: url),
+                collection: collection,
+                tags: metadata.tags,
+                notes: metadata.notes
+            )
+        case .file(let name, let type, _):
+            guard let data = payload.fileData else { return }
+            item = SavedItem(
+                title: (payload.fileName as NSString?)?.deletingPathExtension ?? name,
+                urlString: "",
+                mediaType: type,
+                collection: collection,
+                tags: metadata.tags,
+                notes: metadata.notes
+            )
+            item.fileData = data
+            item.fileName = payload.fileName
+        }
+        item.needsAutoCollection = (metadata.autoOrganize ?? false) && collection == nil
+        item.collectionSetByUser = collection != nil
+
         withAnimation(.snappy) {
             modelContext.insert(item)
             try? modelContext.save()
@@ -321,6 +388,12 @@ struct HomeView: View {
         Task {
             await LinkMetadataEnricher.enrichPendingItems(in: modelContext)
         }
+    }
+
+    private static func firstURL(in text: String) -> URL? {
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let match = detector?.firstMatch(in: text, range: NSRange(text.startIndex..., in: text))
+        return match?.url
     }
 
     // MARK: - Filtering
@@ -397,7 +470,7 @@ private struct HomeGridCard: View {
                     .font(AppTheme.headingFont(13))
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-                Text(item.host)
+                Text(item.displaySubtitle)
                     .font(AppTheme.captionFont(11))
                     .foregroundStyle(.secondary)
                     .lineLimit(1)

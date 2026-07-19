@@ -8,7 +8,9 @@
 
 import Foundation
 import LinkPresentation
+import AVFoundation
 import OSLog
+import PDFKit
 import SwiftData
 import SwiftUI
 import UIKit
@@ -42,8 +44,14 @@ enum LinkMetadataEnricher {
             sortBy: [SortDescriptor(\.dateSaved, order: .reverse)]
         )
         guard let allItems = try? context.fetch(descriptor) else { return }
+
+        // CloudKit sync can materialize duplicates: two devices saving the
+        // same URL offline each create an item, and both records arrive.
+        // Merge them (user-chosen data wins) before any other work.
+        mergeSyncDuplicates(in: allItems, context: context)
+
         let items = allItems.filter {
-            !$0.enrichmentAttempted || $0.needsAutoCollection || $0.embeddingData == nil
+            !$0.isDeleted && (!$0.enrichmentAttempted || $0.needsAutoCollection || $0.embeddingData == nil)
         }
         guard !items.isEmpty else { return }
         // .notice persists to the log store — enrichment issues were
@@ -57,6 +65,15 @@ enum LinkMetadataEnricher {
                 saveQuietly(context)
                 continue
             }
+            // Files never touch the network — thumbnails come from the bytes.
+            if item.isFile {
+                await enrichFileItem(item)
+                item.enrichmentAttempted = true
+                computeEmbeddingIfNeeded(item)
+                autoOrganizeIfNeeded(item, in: context)
+                saveQuietly(context)
+                continue
+            }
             guard let url = item.url, url.scheme == "http" || url.scheme == "https" else {
                 item.enrichmentAttempted = true
                 computeEmbeddingIfNeeded(item)
@@ -65,7 +82,12 @@ enum LinkMetadataEnricher {
                 continue
             }
 
-            let fetched = await fetchMetadata(for: url, wantsProductDetails: item.mediaType == .product)
+            let wantsKeywords = item.needsAutoCollection && item.tags.isEmpty
+            let fetched = await fetchMetadata(
+                for: url,
+                wantsProductDetails: item.mediaType == .product,
+                wantsContentKeywords: wantsKeywords
+            )
             // The item may have been deleted while the network call ran.
             guard !item.isDeleted else { continue }
 
@@ -81,6 +103,10 @@ enum LinkMetadataEnricher {
             if let price = fetched.priceText {
                 item.productPrice = price
             }
+            // Content-derived tags for Auto saves that came in without any.
+            if wantsKeywords, !fetched.contentKeywords.isEmpty {
+                item.tags = fetched.contentKeywords
+            }
             if let gifData = fetched.animatedImageData {
                 withAnimation(.snappy) {
                     item.animatedPreviewData = gifData
@@ -94,6 +120,48 @@ enum LinkMetadataEnricher {
             autoOrganizeIfNeeded(item, in: context)
             saveQuietly(context)
         }
+    }
+
+    /// One item per URL, even after CloudKit merges libraries from several
+    /// devices. The survivor keeps the earliest save date and the richest
+    /// data; user-set collections beat auto-filed ones.
+    @MainActor
+    static func mergeSyncDuplicates(in items: [SavedItem], context: ModelContext) {
+        let linkItems = items.filter { !$0.urlString.isEmpty }
+        let groups = Dictionary(grouping: linkItems, by: \.urlString).values.filter { $0.count > 1 }
+        guard !groups.isEmpty else { return }
+
+        var removedCount = 0
+        for group in groups {
+            // Prefer the item a user actually curated, then the most
+            // enriched one, then the oldest.
+            let survivor = group.sorted {
+                if $0.collectionSetByUser != $1.collectionSetByUser { return $0.collectionSetByUser }
+                if ($0.previewImageData != nil) != ($1.previewImageData != nil) { return $0.previewImageData != nil }
+                return $0.dateSaved < $1.dateSaved
+            }.first!
+
+            for duplicate in group where duplicate !== survivor {
+                survivor.dateSaved = min(survivor.dateSaved, duplicate.dateSaved)
+                survivor.isFavorite = survivor.isFavorite || duplicate.isFavorite
+                if survivor.collection == nil { survivor.collection = duplicate.collection }
+                if survivor.notes == nil { survivor.notes = duplicate.notes }
+                if survivor.previewImageData == nil { survivor.previewImageData = duplicate.previewImageData }
+                if survivor.animatedPreviewData == nil { survivor.animatedPreviewData = duplicate.animatedPreviewData }
+                if survivor.productPrice == nil { survivor.productPrice = duplicate.productPrice }
+                if let opened = duplicate.lastOpenedAt {
+                    survivor.lastOpenedAt = max(survivor.lastOpenedAt ?? .distantPast, opened)
+                }
+                for tag in duplicate.tags where !survivor.tags.contains(tag) {
+                    survivor.tags.append(tag)
+                }
+                survivor.collectionSetByUser = survivor.collectionSetByUser || duplicate.collectionSetByUser
+                context.delete(duplicate)
+                removedCount += 1
+            }
+        }
+        saveQuietly(context)
+        logger.notice("Merged \(removedCount) duplicate item(s) after sync")
     }
 
     /// Embed once the real title is known. Cheap (~ms) and idempotent.
@@ -145,13 +213,69 @@ enum LinkMetadataEnricher {
         var imageData: Data?
         var animatedImageData: Data?
         var priceText: String?
+        var contentKeywords: [String] = []
+    }
+
+    /// Thumbnails for file items, straight from the stored bytes.
+    @MainActor
+    private static func enrichFileItem(_ item: SavedItem) async {
+        guard let data = item.fileData, item.previewImageData == nil else { return }
+
+        switch item.mediaType {
+        case .gif:
+            if data.count <= maxAnimatedBytes {
+                item.animatedPreviewData = data
+            }
+            if let firstFrame = UIImage(data: data) {
+                item.previewImageData = thumbnailData(from: firstFrame)
+            }
+        case .image:
+            if let image = UIImage(data: data) {
+                item.previewImageData = thumbnailData(from: image)
+            }
+        case .pdf:
+            if let document = PDFDocument(data: data) {
+                if let page = document.page(at: 0) {
+                    let pageImage = page.thumbnail(of: CGSize(width: 720, height: 960), for: .cropBox)
+                    item.previewImageData = thumbnailData(from: pageImage)
+                }
+                // PDFs carry their own text — use it for auto-tags the same
+                // way we read web pages for links.
+                if item.needsAutoCollection, item.tags.isEmpty,
+                   let text = document.string?.prefix(6000), text.count > 200 {
+                    let exclusions = Set(item.title.lowercased()
+                        .components(separatedBy: CharacterSet.alphanumerics.inverted))
+                    item.tags = ContentKeywords.extract(fromHTML: String(text), excluding: exclusions)
+                }
+            }
+        case .video:
+            // AVFoundation needs a file on disk; use a throwaway temp copy.
+            let ext = (item.fileName as NSString?)?.pathExtension ?? "mp4"
+            let tempURL = FileManager.default.temporaryDirectory
+                .appendingPathComponent("thumb-\(UUID().uuidString).\(ext.isEmpty ? "mp4" : ext)")
+            defer { try? FileManager.default.removeItem(at: tempURL) }
+            guard (try? data.write(to: tempURL)) != nil else { return }
+
+            let generator = AVAssetImageGenerator(asset: AVURLAsset(url: tempURL))
+            generator.appliesPreferredTrackTransform = true
+            generator.maximumSize = CGSize(width: 1440, height: 1440)
+            if let cgImage = try? await generator.image(at: CMTime(seconds: 0.5, preferredTimescale: 600)).image {
+                item.previewImageData = thumbnailData(from: UIImage(cgImage: cgImage))
+            }
+        default:
+            break
+        }
     }
 
     /// GIFs above this size get a static preview only — keeps the store and
     /// list scrolling sane if someone saves a 50 MB monster.
     private static let maxAnimatedBytes = 12_000_000
 
-    private static func fetchMetadata(for url: URL, wantsProductDetails: Bool = false) async -> FetchedMetadata {
+    private static func fetchMetadata(
+        for url: URL,
+        wantsProductDetails: Bool = false,
+        wantsContentKeywords: Bool = false
+    ) async -> FetchedMetadata {
         var fetched = FetchedMetadata()
 
         // Direct .gif links skip the metadata dance — the URL is the content.
@@ -175,12 +299,18 @@ enum LinkMetadataEnricher {
             }
         }
 
-        // Storefronts often defeat LinkPresentation (no preview image) and
-        // are the only place prices live — go to the page's OpenGraph tags.
-        if fetched.imageData == nil || (wantsProductDetails && fetched.priceText == nil) {
+        // One HTML fetch serves three needs: OpenGraph image fallback,
+        // product price, and content keywords for auto-tagging.
+        if fetched.imageData == nil || (wantsProductDetails && fetched.priceText == nil) || wantsContentKeywords {
             if let html = await OpenGraphScraper.fetchHTMLHead(from: url) {
                 if wantsProductDetails {
                     fetched.priceText = OpenGraphScraper.price(inHTML: html)
+                }
+                if wantsContentKeywords {
+                    let exclusions = Set(((fetched.title ?? "") + " " + (url.host ?? ""))
+                        .lowercased()
+                        .components(separatedBy: CharacterSet.alphanumerics.inverted))
+                    fetched.contentKeywords = ContentKeywords.extract(fromHTML: html, excluding: exclusions)
                 }
                 if fetched.imageData == nil,
                    let imageURL = OpenGraphScraper.imageURL(inHTML: html, relativeTo: url),

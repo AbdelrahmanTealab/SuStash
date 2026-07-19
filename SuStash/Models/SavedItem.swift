@@ -40,6 +40,10 @@ final class SavedItem {
     var lastOpenedAt: Date?
     // Scraped from product pages at enrichment ("CA$1,099.00"); display-only.
     var productPrice: String?
+    // File saves: the bytes live here (externalStorage → sidecar files,
+    // CKAsset when syncing); urlString stays "" for file items.
+    @Attribute(.externalStorage) var fileData: Data?
+    var fileName: String?
     var isFavorite: Bool = false
     var dateSaved: Date = Date()
     var notes: String?
@@ -76,10 +80,24 @@ final class SavedItem {
         set { mediaTypeRaw = newValue.rawValue }
     }
 
+    var isFile: Bool {
+        fileData != nil || fileName != nil
+    }
+
     /// Display host, e.g. "youtube.com" for https://www.youtube.com/watch?v=…
     var host: String {
         guard let host = url?.host else { return urlString }
         return host.hasPrefix("www.") ? String(host.dropFirst(4)) : host
+    }
+
+    /// Second line in cells: host for links, type + size for files.
+    var displaySubtitle: String {
+        guard isFile else { return host }
+        if let bytes = fileData?.count, bytes > 0 {
+            let size = ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file)
+            return "\(mediaType.displayName) · \(size)"
+        }
+        return mediaType.displayName
     }
 
     /// Friendly source name for filtering, e.g. "YouTube" for youtube.com.

@@ -5,6 +5,7 @@
 //  Created by Abdelrahman  Tealab on 2024-02-18.
 //
 
+import QuickLook
 import SwiftUI
 import SwiftData
 import UIKit
@@ -21,6 +22,7 @@ struct SavedItemInteractions: ViewModifier {
     let item: SavedItem
     @State private var showEdit = false
     @State private var showShareSheet = false
+    @State private var filePreviewURL: URL?
 
     func body(content: Content) -> some View {
         let base = content
@@ -44,11 +46,16 @@ struct SavedItemInteractions: ViewModifier {
                 EditItemView(item: item)
             }
             .sheet(isPresented: $showShareSheet) {
-                if let url = item.url {
-                    ActivityView(items: [url])
+                if let shareTarget = item.isFile ? item.writeTemporaryFile() : item.url {
+                    ActivityView(items: [shareTarget])
                         .presentationDetents([.medium, .large])
                 }
             }
+            // System QuickLook presentation: full native chrome — share sheet
+            // with Save Image / Save to Files, markup, pinch-zoom, and video
+            // playback controls. (An embedded QLPreviewController loses most
+            // of that chrome.)
+            .quickLookPreview($filePreviewURL)
     }
 
     @ViewBuilder
@@ -74,9 +81,15 @@ struct SavedItemInteractions: ViewModifier {
         Button {
             copyLink()
         } label: {
-            Label("Copy Link", systemImage: "doc.on.doc")
+            Label(item.isFile ? "Copy" : "Copy Link", systemImage: "doc.on.doc")
         }
-        if let url = item.url {
+        if item.isFile {
+            Button {
+                showShareSheet = true
+            } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+        } else if let url = item.url {
             ShareLink(item: url) {
                 Label("Share", systemImage: "square.and.arrow.up")
             }
@@ -96,10 +109,17 @@ struct SavedItemInteractions: ViewModifier {
     private func handleTap() {
         switch AppSettings.tapBehavior {
         case .openLink:
-            guard let url = item.url else { return }
-            item.lastOpenedAt = Date()
-            try? modelContext.save()
-            openURL(url)
+            if item.isFile {
+                guard let url = item.writeTemporaryFile() else { return }
+                item.lastOpenedAt = Date()
+                try? modelContext.save()
+                filePreviewURL = url
+            } else {
+                guard let url = item.url else { return }
+                item.lastOpenedAt = Date()
+                try? modelContext.save()
+                openURL(url)
+            }
         case .copyLink:
             copyLink()
         case .shareLink:
@@ -108,7 +128,17 @@ struct SavedItemInteractions: ViewModifier {
     }
 
     private func copyLink() {
-        UIPasteboard.general.url = item.url
+        if item.isFile {
+            // Copy the content itself where the pasteboard understands it.
+            if let data = item.fileData, item.mediaType == .image || item.mediaType == .gif,
+               let image = UIImage(data: data) {
+                UIPasteboard.general.image = image
+            } else if let url = item.writeTemporaryFile() {
+                UIPasteboard.general.setItemProviders([NSItemProvider(contentsOf: url)].compactMap { $0 }, localOnly: false, expirationDate: nil)
+            }
+        } else {
+            UIPasteboard.general.url = item.url
+        }
         UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
 
@@ -161,6 +191,21 @@ struct NotesBubbleView: View {
         .padding(16)
         .frame(maxWidth: 320, alignment: .leading)
         .background(AppTheme.card)
+    }
+}
+
+extension SavedItem {
+    /// Writes the file bytes to a temp path (named for QuickLook/share) and
+    /// returns its URL. Cheap enough to redo per use; tmp is system-cleaned.
+    func writeTemporaryFile() -> URL? {
+        guard let data = fileData else { return nil }
+        let name = fileName ?? "\(title).dat"
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("sustash-\(abs(name.hashValue))-\(name)")
+        if !FileManager.default.fileExists(atPath: url.path) {
+            guard (try? data.write(to: url)) != nil else { return nil }
+        }
+        return url
     }
 }
 
@@ -252,7 +297,7 @@ struct SavedItemCellView: View {
                     .foregroundStyle(.white)
                     .lineLimit(2)
                 HStack(spacing: 6) {
-                    Text(item.host)
+                    Text(item.displaySubtitle)
                     if let collection = item.collection {
                         Text("·  \(collection)")
                     }
@@ -308,7 +353,7 @@ struct SavedItemCellView: View {
                     .lineLimit(2)
 
                 HStack(spacing: 6) {
-                    Text(item.host)
+                    Text(item.displaySubtitle)
                         .lineLimit(1)
 
                     if let price = item.productPrice {

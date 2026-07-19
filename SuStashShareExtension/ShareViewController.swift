@@ -10,6 +10,10 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 class ShareViewController: UIViewController {
+  /// Types we accept as file saves, most specific first (GIF conforms to
+  /// image, so it must be checked earlier).
+  private static let fileTypes: [UTType] = [.pdf, .gif, .movie, .image, .audio]
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -27,17 +31,62 @@ class ShareViewController: UIViewController {
     for provider in attachments {
       if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
         provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { [weak self] data, _ in
-          guard let self = self, let url = Self.extractURL(from: data) else {
-            self?.tryLoadPlainText(from: attachments)
+          guard let self = self, let url = Self.extractURL(from: data), url.scheme != "file" else {
+            self?.tryLoadFile(from: attachments)
             return
           }
-          self.showShareInput(for: url)
+          self.showComposer(for: .url(url), fileToken: nil, fileName: nil)
         }
         return
       }
     }
-    // 2. Fallback: try plain text (YouTube, many other apps share URLs as text)
+    // 2. Files (Photos, Files app, PDFs, videos…)
+    tryLoadFile(from: attachments)
+  }
+
+  private func tryLoadFile(from attachments: [NSItemProvider]) {
+    for type in Self.fileTypes {
+      for provider in attachments where provider.hasItemConformingToTypeIdentifier(type.identifier) {
+        provider.loadFileRepresentation(forTypeIdentifier: type.identifier) { [weak self] fileURL, _ in
+          guard let self = self, let fileURL else {
+            self?.tryLoadPlainText(from: attachments)
+            return
+          }
+          self.stageFile(at: fileURL)
+        }
+        return
+      }
+    }
+    // 3. Fallback: plain text containing a URL (YouTube and many apps).
     tryLoadPlainText(from: attachments)
+  }
+
+  /// Streams the provided file into the app-group inbox — the extension
+  /// never holds the bytes in memory (its memory ceiling is tiny).
+  private func stageFile(at sourceURL: URL) {
+    let displayName = sourceURL.lastPathComponent
+    let mediaType = MediaType.inferred(fromTypeIdentifier: UTType(filenameExtension: sourceURL.pathExtension)?.identifier ?? UTType.data.identifier)
+
+    let size = (try? sourceURL.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0
+    guard size <= AppGroup.maxSavedFileBytes else {
+      showComposer(for: .file(displayName: displayName, mediaType: mediaType, oversized: true), fileToken: nil, fileName: displayName)
+      return
+    }
+
+    guard let inbox = AppGroup.fileInboxURL else {
+      closeExtension()
+      return
+    }
+    let token = UUID().uuidString + "." + (sourceURL.pathExtension.isEmpty ? "bin" : sourceURL.pathExtension)
+    do {
+      try FileManager.default.createDirectory(at: inbox, withIntermediateDirectories: true)
+      try FileManager.default.copyItem(at: sourceURL, to: inbox.appendingPathComponent(token))
+    } catch {
+      closeExtension()
+      return
+    }
+
+    showComposer(for: .file(displayName: displayName, mediaType: mediaType, oversized: false), fileToken: token, fileName: displayName)
   }
 
   private func tryLoadPlainText(from attachments: [NSItemProvider]) {
@@ -50,7 +99,7 @@ class ShareViewController: UIViewController {
             self.closeExtension()
             return
           }
-          self.showShareInput(for: url)
+          self.showComposer(for: .url(url), fileToken: nil, fileName: nil)
         }
         return
       }
@@ -79,16 +128,23 @@ class ShareViewController: UIViewController {
     return match?.url
   }
 
-  private func showShareInput(for url: URL) {
+  private func showComposer(for input: ComposerInput, fileToken: String?, fileName: String?) {
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }
-      let rootView = ShareInputView(
-        sharedURL: url,
+      let rootView = SaveComposerView(
+        input: input,
         onSave: { [weak self] metadata in
-          self?.saveToSharedDefaults(metadata)
+          var payload = metadata
+          payload.fileToken = fileToken
+          payload.originalFileName = fileName
+          self?.saveToSharedDefaults(payload)
           self?.closeExtension()
         },
         onCancel: { [weak self] in
+          // Don't leave orphaned bytes in the inbox on cancel.
+          if let fileToken, let inbox = AppGroup.fileInboxURL {
+            try? FileManager.default.removeItem(at: inbox.appendingPathComponent(fileToken))
+          }
           self?.closeExtension()
         }
       )

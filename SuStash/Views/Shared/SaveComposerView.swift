@@ -1,8 +1,10 @@
 //
-//  ShareInputView.swift
-//  SuStashShareExtension
+//  SaveComposerView.swift
+//  SuStash
 //
-//  Created by Abdelrahman  Tealab on 2025-05-16.
+//  The Auto/Manual save sheet, shared by the share extension and the
+//  in-app + button. Links get the full manual form; files inherit their
+//  type from the file itself, so the Type picker is hidden for them.
 //
 
 import SwiftUI
@@ -12,8 +14,27 @@ enum ShareSaveMode: String {
   case manual
 }
 
-struct ShareInputView: View {
-  let sharedURL: URL
+/// What is being saved.
+enum ComposerInput {
+  case url(URL)
+  /// `oversized` files show the form disabled with an explanation.
+  case file(displayName: String, mediaType: MediaType, oversized: Bool)
+
+  var mediaType: MediaType {
+    switch self {
+    case .url(let url): .inferred(from: url)
+    case .file(_, let type, _): type
+    }
+  }
+
+  var isFile: Bool {
+    if case .file = self { return true }
+    return false
+  }
+}
+
+struct SaveComposerView: View {
+  let input: ComposerInput
   var onSave: (SharedLinkMetadata) -> Void
   var onCancel: () -> Void
 
@@ -29,11 +50,16 @@ struct ShareInputView: View {
   /// Collection names mirrored by the main app on each foreground pass.
   private let knownCollections: [String]
 
-  init(sharedURL: URL, onSave: @escaping (SharedLinkMetadata) -> Void, onCancel: @escaping () -> Void) {
-    self.sharedURL = sharedURL
+  private var isOversized: Bool {
+    if case .file(_, _, true) = input { return true }
+    return false
+  }
+
+  init(input: ComposerInput, onSave: @escaping (SharedLinkMetadata) -> Void, onCancel: @escaping () -> Void) {
+    self.input = input
     self.onSave = onSave
     self.onCancel = onCancel
-    _mediaType = State(initialValue: .inferred(from: sharedURL))
+    _mediaType = State(initialValue: input.mediaType)
 
     let saved = Self.groupDefaults?.string(forKey: AppGroup.preferredShareSaveModeKey)
     _mode = State(initialValue: saved.flatMap(ShareSaveMode.init(rawValue:)) ?? .auto)
@@ -43,14 +69,34 @@ struct ShareInputView: View {
   var body: some View {
     NavigationStack {
       Form {
-        Section("Link") {
+        Section(input.isFile ? "File" : "Link") {
           HStack(spacing: 10) {
             Image(systemName: mediaType.systemImage)
               .foregroundStyle(.tint)
-            Text(sharedURL.absoluteString)
-              .font(.footnote)
-              .foregroundStyle(.secondary)
-              .lineLimit(3)
+            switch input {
+            case .url(let url):
+              Text(url.absoluteString)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .lineLimit(3)
+            case .file(let name, let type, _):
+              VStack(alignment: .leading, spacing: 1) {
+                Text(name)
+                  .font(.subheadline.weight(.medium))
+                  .lineLimit(2)
+                Text(type.displayName)
+                  .font(.caption)
+                  .foregroundStyle(.secondary)
+              }
+            }
+          }
+        }
+
+        if isOversized {
+          Section {
+          } footer: {
+            Label("This file is too large to save (max 50 MB).", systemImage: "exclamationmark.triangle")
+              .foregroundStyle(.orange)
           }
         }
 
@@ -63,7 +109,9 @@ struct ShareInputView: View {
           .listRowBackground(Color.clear)
         } footer: {
           if mode == .auto {
-            Text("SuStash will file this link into a collection based on what it is.")
+            Text(input.isFile
+                 ? "SuStash will file this into a collection based on its type."
+                 : "SuStash will file this link into a collection based on what it is.")
           }
         }
 
@@ -110,13 +158,16 @@ struct ShareInputView: View {
               .autocorrectionDisabled()
           }
 
-          Section("Type") {
-            Picker("Type", selection: $mediaType) {
-              ForEach(MediaType.allCases, id: \.self) { type in
-                Label(type.displayName, systemImage: type.systemImage).tag(type)
+          // A file's type is inherited from the file — no picker.
+          if !input.isFile {
+            Section("Type") {
+              Picker("Type", selection: $mediaType) {
+                ForEach(MediaType.allCases, id: \.self) { type in
+                  Label(type.displayName, systemImage: type.systemImage).tag(type)
+                }
               }
+              .pickerStyle(.menu)
             }
-            .pickerStyle(.menu)
           }
 
           Section("Notes") {
@@ -135,6 +186,7 @@ struct ShareInputView: View {
         ToolbarItem(placement: .confirmationAction) {
           Button("Save", action: submit)
             .fontWeight(.semibold)
+            .disabled(isOversized)
         }
       }
     }
@@ -172,12 +224,17 @@ struct ShareInputView: View {
   }
 
   private func submit() {
-    guard !didSubmit else { return }
+    guard !didSubmit, !isOversized else { return }
     didSubmit = true
 
     let isAuto = mode == .auto
+    var urlString = ""
+    if case .url(let url) = input {
+      urlString = url.absoluteString
+    }
+
     let metadata = SharedLinkMetadata(
-      url: sharedURL.absoluteString,
+      url: urlString,
       collection: isAuto ? "" : collection.trimmingCharacters(in: .whitespacesAndNewlines),
       tags: isAuto ? [] : tags.split(separator: ",")
         .map { $0.trimmingCharacters(in: .whitespaces) }

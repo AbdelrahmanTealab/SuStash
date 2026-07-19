@@ -43,6 +43,13 @@
 		B6DA84AD2B8024970052ACFD /* RecommendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AC2B8024970052ACFD /* RecommendsView.swift */; };
 		B6DA84AF2B8024A60052ACFD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84AE2B8024A60052ACFD /* HomeView.swift */; };
 		B6DA84B92B81AF630052ACFD /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */; };
+		B655FE492B82D30000983B5D /* SaveComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE482B82D30000983B5D /* SaveComposerView.swift */; };
+		B655FE4A2B82D30000983B5D /* SaveComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE482B82D30000983B5D /* SaveComposerView.swift */; };
+		B655FE5A2B82D30000983B5D /* SuStashMessages.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B655FE512B82D30000983B5D /* SuStashMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B655FE5D2B82D30000983B5D /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCEE2B82D2B500983B5D /* SavedItem.swift */; };
+		B655FE5E2B82D30000983B5D /* SharedLinkMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FCFF2B82D30000983B5D /* SharedLinkMetadata.swift */; };
+		B655FE5F2B82D30000983B5D /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE012B82D30000983B5D /* SharedStore.swift */; };
+		B655FE602B82D30000983B5D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655FE062B82D30000983B5D /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +81,13 @@
 			remoteGlobalIDString = B6DA846A2B801D240052ACFD;
 			remoteInfo = SuStash;
 		};
+		B655FE5B2B82D30000983B5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6DA84632B801D240052ACFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B655FE502B82D30000983B5D;
+			remoteInfo = SuStashMessages;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +99,7 @@
 			files = (
 				B6A5B4B52DD82F4100F3B565 /* SuStashShareExtension.appex in Embed Foundation Extensions */,
 				B655FE272B82D30000983B5D /* SuStashWidgets.appex in Embed Foundation Extensions */,
+				B655FE5A2B82D30000983B5D /* SuStashMessages.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +146,8 @@
 		B6DA84B82B81AF630052ACFD /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		B6DA84BA2B81B0FD0052ACFD /* Avenir Next Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next Condensed.ttc"; sourceTree = "<group>"; };
 		B6DA84BB2B81B0FD0052ACFD /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		B655FE482B82D30000983B5D /* SaveComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveComposerView.swift; sourceTree = "<group>"; };
+		B655FE512B82D30000983B5D /* SuStashMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SuStashMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -148,11 +165,19 @@
 			);
 			target = B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */;
 		};
+		B655FE592B82D30000983B5D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B655FE502B82D30000983B5D /* SuStashMessages */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B655FE252B82D30000983B5D /* SuStashWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B655FE262B82D30000983B5D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashWidgets; sourceTree = "<group>"; };
 		B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B6A5B4B62DD82F4100F3B565 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashShareExtension; sourceTree = "<group>"; };
+		B655FE582B82D30000983B5D /* SuStashMessages */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B655FE592B82D30000983B5D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SuStashMessages; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +210,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B6DA84862B801D290052ACFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B655FE532B82D30000983B5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -227,6 +259,7 @@
 				B6A5B4AC2DD82F4100F3B565 /* SuStashShareExtension */,
 				B655FE252B82D30000983B5D /* SuStashWidgets */,
 				B655FE372B82D30000983B5D /* SuStash.storekit */,
+				B655FE582B82D30000983B5D /* SuStashMessages */,
 				B6DA846C2B801D240052ACFD /* Products */,
 				0B4C59BD248E17D60FB07D5B /* Frameworks */,
 			);
@@ -239,6 +272,7 @@
 				B6DA847F2B801D280052ACFD /* SuStashTests.xctest */,
 				B6DA84892B801D290052ACFD /* SuStashUITests.xctest */,
 				B6A5B4AB2DD82F4100F3B565 /* SuStashShareExtension.appex */,
+				B655FE512B82D30000983B5D /* SuStashMessages.appex */,
 				B655FE202B82D30000983B5D /* SuStashWidgets.appex */,
 			);
 			name = Products;
@@ -293,6 +327,7 @@
 				B6DA84A52B8023C80052ACFD /* Navigation */,
 				B655FE122B82D30000983B5D /* Settings */,
 				B655FE472B82D30000983B5D /* Onboarding */,
+				B655FE4B2B82D30000983B5D /* Shared */,
 				B6DA84A02B80217D0052ACFD /* Collections */,
 				B6DA849F2B8021770052ACFD /* Recommends */,
 				B6DA849E2B80216F0052ACFD /* Home */,
@@ -377,6 +412,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B655FE4B2B82D30000983B5D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B655FE482B82D30000983B5D /* SaveComposerView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -438,6 +481,7 @@
 			dependencies = (
 				B6A5B4B42DD82F4100F3B565 /* PBXTargetDependency */,
 				B655FE292B82D30000983B5D /* PBXTargetDependency */,
+				B655FE5C2B82D30000983B5D /* PBXTargetDependency */,
 			);
 			name = SuStash;
 			productName = SuStash;
@@ -479,6 +523,26 @@
 			productName = SuStashUITests;
 			productReference = B6DA84892B801D290052ACFD /* SuStashUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B655FE502B82D30000983B5D /* SuStashMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B655FE552B82D30000983B5D /* Build configuration list for PBXNativeTarget "SuStashMessages" */;
+			buildPhases = (
+				B655FE522B82D30000983B5D /* Sources */,
+				B655FE532B82D30000983B5D /* Frameworks */,
+				B655FE542B82D30000983B5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B655FE582B82D30000983B5D /* SuStashMessages */,
+			);
+			name = SuStashMessages;
+			productName = SuStashMessages;
+			productReference = B655FE512B82D30000983B5D /* SuStashMessages.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
 
@@ -526,6 +590,7 @@
 				B6DA84882B801D290052ACFD /* SuStashUITests */,
 				B6A5B4AA2DD82F4100F3B565 /* SuStashShareExtension */,
 				B655FE212B82D30000983B5D /* SuStashWidgets */,
+				B655FE502B82D30000983B5D /* SuStashMessages */,
 			);
 		};
 /* End PBXProject section */
@@ -568,6 +633,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B655FE542B82D30000983B5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -587,6 +659,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B655FE032B82D30000983B5D /* SharedLinkMetadata.swift in Sources */,
+				B655FE4A2B82D30000983B5D /* SaveComposerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +676,7 @@
 				B655FE342B82D30000983B5D /* ProStore.swift in Sources */,
 				B655FE392B82D30000983B5D /* LinkIntelligence.swift in Sources */,
 				B655FE422B82D30000983B5D /* OnboardingView.swift in Sources */,
+				B655FE492B82D30000983B5D /* SaveComposerView.swift in Sources */,
 				B655FE442B82D30000983B5D /* RediscoverReminder.swift in Sources */,
 				B655FE462B82D30000983B5D /* SaveLinkIntent.swift in Sources */,
 				B655FE362B82D30000983B5D /* PaywallView.swift in Sources */,
@@ -638,6 +712,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B655FE522B82D30000983B5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B655FE5D2B82D30000983B5D /* SavedItem.swift in Sources */,
+				B655FE5E2B82D30000983B5D /* SharedLinkMetadata.swift in Sources */,
+				B655FE5F2B82D30000983B5D /* SharedStore.swift in Sources */,
+				B655FE602B82D30000983B5D /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -661,6 +746,11 @@
 			target = B6DA846A2B801D240052ACFD /* SuStash */;
 			targetProxy = B6DA848A2B801D290052ACFD /* PBXContainerItemProxy */;
 		};
+		B655FE5C2B82D30000983B5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B655FE502B82D30000983B5D /* SuStashMessages */;
+			targetProxy = B655FE5B2B82D30000983B5D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -670,7 +760,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStashWidgets/SuStashWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
@@ -681,7 +771,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -698,7 +788,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStashWidgets/SuStashWidgets.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashWidgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
@@ -709,7 +799,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashWidgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -727,7 +817,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
@@ -738,7 +828,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -755,7 +845,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStashShareExtension/SuStashShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SuStashShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SuStashShareExtension;
@@ -766,7 +856,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -904,7 +994,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
 				DEVELOPMENT_TEAM = 77MX867GR8;
@@ -928,7 +1018,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -949,7 +1039,7 @@
 				CODE_SIGN_ENTITLEMENTS = SuStash/SuStash.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SuStash/Preview Content\"";
 				DEVELOPMENT_TEAM = 77MX867GR8;
@@ -973,7 +1063,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -991,12 +1081,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1013,12 +1103,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1034,12 +1124,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1055,12 +1145,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1069,6 +1159,63 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SuStash;
+			};
+			name = Release;
+		};
+		B655FE562B82D30000983B5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = SuStashMessages/SuStashMessages.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashMessages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashMessages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B655FE572B82D30000983B5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = SuStashMessages/SuStashMessages.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SuStashMessages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SuStash;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atealab.SuStash.SuStashMessages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1125,6 +1272,15 @@
 			buildConfigurations = (
 				B6DA849A2B801D290052ACFD /* Debug */,
 				B6DA849B2B801D290052ACFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B655FE552B82D30000983B5D /* Build configuration list for PBXNativeTarget "SuStashMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B655FE562B82D30000983B5D /* Debug */,
+				B655FE572B82D30000983B5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

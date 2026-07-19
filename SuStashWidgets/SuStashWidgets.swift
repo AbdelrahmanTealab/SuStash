@@ -50,6 +50,11 @@ struct WidgetLink: Identifiable, Hashable {
 }
 
 enum WidgetStore {
+    // Widgets run in their own process and never sync — one local container
+    // for the process lifetime. (SharedStore.container is main-actor state
+    // owned by the app's StoreHolder.)
+    private static let container = SharedStore.makeContainer()
+
     static func recentLinks(limit: Int, collection: String? = nil) -> [WidgetLink] {
         var descriptor = FetchDescriptor<SavedItem>(
             sortBy: [SortDescriptor(\.dateSaved, order: .reverse)]
@@ -58,13 +63,13 @@ enum WidgetStore {
             descriptor.predicate = #Predicate { $0.collection == collection }
         }
         descriptor.fetchLimit = limit
-        let context = ModelContext(SharedStore.container)
+        let context = ModelContext(container)
         let items = (try? context.fetch(descriptor)) ?? []
         return items.map(WidgetLink.init)
     }
 
     static func distinctCollections() -> [String] {
-        let context = ModelContext(SharedStore.container)
+        let context = ModelContext(container)
         let items = (try? context.fetch(FetchDescriptor<SavedItem>())) ?? []
         return Array(Set(items.compactMap(\.collection))).sorted()
     }

@@ -20,8 +20,8 @@ enum CollectionClassifier {
         ("Social", ["twitter.com", "x.com/", "t.co/", "reddit.com", "facebook.com", "threads.net", "news.ycombinator"]),
         ("Gaming", ["gameplay", "walkthrough", "speedrun", "gaming", "twitch.tv", "ign.com", "gamespot", "minecraft", "fortnite", "elden ring", "nintendo", "playstation", "xbox", "steam"]),
         ("Music", ["official video", "official music video", "official audio", "lyrics", "music video", "album", "remix", "spotify.com", "soundcloud", "music.apple", "bandcamp", "feat.", "ft."]),
-        ("Fitness", ["workout", "exercise", "gym", "yoga", "pilates", "protein", "hypertrophy", "cardio", "stretching"]),
-        ("Educational", ["tutorial", "how to", "learn", "lesson", "course", "lecture", "explained", "guide", "khanacademy", "coursera", "udemy", "edx", "documentary", "crash course"]),
+        ("Fitness", ["workout", "workouts", "exercise", "exercises", "gym", "yoga", "pilates", "protein", "hypertrophy", "cardio", "stretching"]),
+        ("Educational", ["tutorial", "tutorials", "how to", "learn", "learning", "lesson", "lessons", "course", "courses", "lecture", "explained", "guide", "guides", "khanacademy", "coursera", "udemy", "edx", "documentary", "crash course"]),
         ("Sports", ["highlights", "espn", "premier league", "champions league", "nba", "nfl", "fifa", "match", "world cup", "formula 1", "f1.com"]),
         ("News", ["breaking", "bbc.c", "cnn.com", "reuters", "nytimes", "theguardian", "aljazeera", "apnews", "bloomberg", "nbcnews", "foxnews", "cbsnews", "abcnews", "washingtonpost", "wsj.com", "usatoday", "npr.org", "axios.com", "politico", "cnbc.com", "newsweek", "time.com/", "dailymail", "telegraph.co", "independent.co"]),
         ("Tech", ["github.com", "stackoverflow", "programming", "developer", "javascript", "python", "swiftui", "swift ", "api ", "techcrunch", "theverge", "arstechnica", "hacker news", "ycombinator"]),
@@ -37,8 +37,19 @@ enum CollectionClassifier {
     /// sensible rather than in an "Uncategorized" bucket.
     static func suggestCollection(title: String, urlString: String, mediaType: MediaType) -> String {
         let haystack = (title + " " + urlString).lowercased()
+        // Single-word keywords must match whole words — "match" must not
+        // fire on "matching" (which put an AI paper in Sports). Keywords
+        // with dots/spaces/digits (domains, phrases) keep substring search.
+        let words = Set(haystack.components(separatedBy: CharacterSet.alphanumerics.inverted))
 
-        for rule in rules where rule.keywords.contains(where: { haystack.contains($0) }) {
+        func keywordMatches(_ keyword: String) -> Bool {
+            if keyword.allSatisfy(\.isLetter) {
+                return words.contains(keyword)
+            }
+            return haystack.contains(keyword)
+        }
+
+        for rule in rules where rule.keywords.contains(where: keywordMatches) {
             return rule.collection
         }
 
