@@ -35,6 +35,16 @@ struct SuStashApp: App {
                 .task {
                     ProStore.shared.start()
                     _ = SyncMonitor.shared  // start observing before first sync event
+                    #if DEBUG
+                    // `-rebuildStoreAfterLaunch`: exercises the container
+                    // re-root with live views, for headless crash testing.
+                    if ProcessInfo.processInfo.arguments.contains("-rebuildStoreAfterLaunch") {
+                        Task { @MainActor in
+                            try? await Task.sleep(for: .seconds(4))
+                            StoreHolder.shared.rebuildForSyncChange()
+                        }
+                    }
+                    #endif
                     // Cold-launch pass, independent of scenePhase: a system
                     // alert (permissions, Apple Account) can hold the scene
                     // at .inactive indefinitely, and saved links must import

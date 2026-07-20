@@ -158,6 +158,15 @@ struct SettingsView: View {
                 }
             }
             .task(checkICloud)
+            .onDisappear {
+                guard StoreHolder.shared.rebuildPendingAfterSettingsClose else { return }
+                StoreHolder.shared.rebuildPendingAfterSettingsClose = false
+                // Let the dismissal animation fully finish before re-rooting.
+                Task { @MainActor in
+                    try? await Task.sleep(for: .milliseconds(400))
+                    StoreHolder.shared.rebuildForSyncChange()
+                }
+            }
             .alert("Notifications are off", isPresented: $showNotificationsDeniedAlert) {
                 Button("OK", role: .cancel) {}
             } message: {
@@ -274,19 +283,20 @@ struct SettingsView: View {
             Text("iCloud")
         } footer: {
             if proStore.isPro {
-                Text("Your links sync through your private iCloud. Turning sync on uploads this device's saves and downloads the rest.")
+                Text("Your links sync through your private iCloud. Changes apply right after you close Settings.")
             }
         }
     }
 
-    /// Applies immediately: rebuilds the store container with (or without)
-    /// CloudKit mirroring — no relaunch, which macOS users rarely do.
+    /// Flags the rebuild; it runs when this sheet closes. Rebuilding
+    /// re-roots the whole UI, and doing that synchronously from inside this
+    /// binding (while the sheet is up) crashes mid-update.
     private var syncBinding: Binding<Bool> {
         Binding(
             get: { syncEnabled },
             set: { newValue in
                 syncEnabled = newValue
-                StoreHolder.shared.rebuildForSyncChange()
+                StoreHolder.shared.rebuildPendingAfterSettingsClose = true
             }
         )
     }

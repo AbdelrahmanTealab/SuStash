@@ -84,15 +84,34 @@ final class StoreHolder {
     private(set) var container: ModelContainer
     private(set) var generation = 0
 
+    /// Set by the sync toggle; consumed when Settings closes. Rebuilding
+    /// re-roots the entire view tree, so it must NEVER run synchronously
+    /// inside a binding write or while the Settings sheet is presented —
+    /// that tears down the sheet mid-update and crashes.
+    var rebuildPendingAfterSettingsClose = false
+
+    /// Old containers stay alive briefly so views mid-transition never
+    /// touch a deallocated store.
+    private var retiredContainers: [ModelContainer] = []
+
     private init() {
         container = SharedStore.makeContainer()
     }
 
     func rebuildForSyncChange() {
-        try? container.mainContext.save()
-        container = SharedStore.makeContainer()
+        let old = container
+        try? old.mainContext.save()
+
+        let new = SharedStore.makeContainer()
+        retiredContainers.append(old)
+        container = new
         generation += 1
         logger.notice("Store container rebuilt (generation \(self.generation)) for sync setting change")
+
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(5))
+            self?.retiredContainers.removeAll { $0 === old }
+        }
     }
 }
 
